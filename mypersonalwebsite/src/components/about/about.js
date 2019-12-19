@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 export default class About extends Component {
   render() {
+    let resumeData = this.props.resumeData;
     return (
       <React.Fragment>
       {/*generated code*/}
@@ -11,22 +12,22 @@ export default class About extends Component {
           </div>
           <div className="nine columns main-col">
             <h2>About Me</h2>
-            <p>I am a Junior at Rice University studying Computer Science.
+            <p>I am a {resumeData.role}.
             </p>
             <div className="row">
               <div className="columns contact-details">
                 <h2>Contact Details</h2>
                 <p className="address">
-                  <span>Seung Hun Jang</span><br />
-                  <span>Houston TX
+                  <span>{resumeData.name}</span><br />
+                  <span>{resumeData.email}
                   </span><br />
-                  <span>(713)806-8991</span><br />
-                  <span>sj43@rice.edu</span>
+                  <span>{resumeData.phone}</span><br />
+                  <span>{resumeData.address}</span>
                 </p>
               </div>
               <div className="columns download">
                 <p>
-                  <a href="#" className="button"><i className="fa fa-download" />Download Resume</a>
+                  <a href={resumeData.resumeLink} className="button"><i className="fa fa-download" />Download Resume</a>
                 </p>
               </div>
             </div> {/* end row */}
