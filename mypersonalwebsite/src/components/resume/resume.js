@@ -62,9 +62,17 @@ export default class Resume extends Component {
             </div>
             <div className="nine columns main-col">
               <div className="bars">
-                <h1> Python, C/C++, Java, HTML, JavaScript, SQL </h1>
+                <h1>Language</h1> 
+                <p> Python, C, C++, Java, HTML, JavaScript, Go, SQL </p>
                 <p></p>
-                <h1> AWS (EC2 / S3 / EMR), React, Express JS, Mongo DB, Heroku, Android Studio, NLTK</h1>
+                <h1>Framework & Database & Library </h1>
+                <p> Flask, React, ExpressJs, MongoDB, Redis, Heroku, NLTK, Mkdocs, Slate </p>
+                <p></p>
+                <h1>Amazon Web Service</h1>
+                <p> ECS, S3, EMR, CloudFormation, SNS, SQS, Lambda, ElasticSearch, ElasticBeanstalk, CodePipeline, CodeBuild </p>
+                <p></p>
+                <h1>Development Tool</h1>
+                <p> Jenkins, Jira, Coverity static analysis, Gerrit code review</p>
                 {/* <ul className="skills">
                   <li><span className="bar-expand photoshop" /><em>Photoshop</em></li>
                   <li><span className="bar-expand illustrator" /><em>Illustrator</em></li>
