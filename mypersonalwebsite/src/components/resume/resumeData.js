@@ -22,7 +22,7 @@ let resumeData = {
         "Participated in Proof of Concept of constructing Expedia’s new cross-organizational platform on Backstage developer portal",
         "Implemented ‘docs-as-code’ plugin scalable to sustain +10k documentations for Expedia Organization applications and contributed to Spotify’s Backstage.io open source project",
         "Designed and built two microservices: 1) Automatic notification system to notify application owners of documentation change 2) Documentation search, filter functionality & CI pipeline updating index documentation fields on ElasticSearch",
-        "[Go | JavaScript | Java] & [AWS S3, CloudFormation, SNS, SQS, Lambda, ElasticSearch | Jenkins | Jira | Mkdocs | Backstage.io]"
+        "[Go | JavaScript | Kotlin] & [AWS S3, CloudFormation, SNS, SQS, Lambda, ElasticSearch | Jenkins | Jira | Spring Boot]"
       ]     
     },
     {
