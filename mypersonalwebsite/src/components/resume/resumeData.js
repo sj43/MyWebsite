@@ -1,18 +1,30 @@
 let resumeData = {
   "imagebaseurl": "http://localhost:3000/",
   "name": "Seung Hun Jang",
-  "role": "Senior @ Rice University, Computer Science Major",
+  "role": "Rice University, Bachelors in Computer Science",
   "phone": "(713)806-8991",
-  "address": "Houston, TX",
-  "email": "sj43@rice.edu",
+  "address": "Redmond, WA",
+  "email": "seunghunjang956@gmail.com",
   "education": {
     "school": "Rice University",
-    "major": "B.S. in Computer Science",
-    "year": "Senior",
-    "date": "Expected May 2021",
-    "gpa": "3.76/4.0"
+    "major": "B.A. in Computer Science",
+    "year": "Graduated",
+    "date": "May 2021",
+    "gpa": "3.76/4.0 (President's Honor Roll)"
   },
   "experience": [
+    {
+      "organization": "Microsoft",
+      "location": "Redmond, WA",
+      "position": "Software Engineer – Windows Servicing and Delivery Team",
+      "date": "Aug 2021 - Present",
+      "description": [
+        "Delivered packaged updates to billions of Windows customers around the world every week via workflow automation",
+        "Led organization-wide AI-Assisted-DRI-Copilot project and reduced on average 25% of time spent by on-call personnel - supported features such as incident auto-mitigation, mitigation strategy suggestion, weekly deployment control, role-based permission granting, and more simply via conversational chats with Copilot",
+        "Participated in rolling out Win 11 OS to the world by automating delivery pipelines and configuration setups, reducing tolls and blockage caused by human errors by 20%",
+        "[C# | Python] & [Azure cloud services (OpenAI, Pipelines, RelationalDatabaseStorage, KeyVaults, AppInsights etc)]"
+      ]     
+    },
     {
       "organization": "Expedia Group",
       "location": "(Remote Internship) Houston, Texas",
@@ -63,6 +75,7 @@ let resumeData = {
       ]     
     }
   ],
-  "resumeLink": "https://drive.google.com/file/d/14D7ZbdZ4QoRgwBKtYUZfiswGbZyu5-6D/view?usp=sharing"
+  "resumeLink": "https://drive.google.com/file/d/1DaUPdQOTyIuRdMRr2Zcuma06b-ebYRK4/view?usp=sharing"
+  
 }
 export default resumeData
