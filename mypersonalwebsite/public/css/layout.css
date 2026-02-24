@@ -22,7 +22,7 @@
 /* a. General Styles
 /* ------------------------------------------------------------------ */
 
-body { background: #0f0f0f; }
+body { background: var(--color-bg); }
 
 /* ------------------------------------------------------------------ */
 /* b. Header Styles
@@ -58,8 +58,11 @@ header .banner {
 
 header .banner-text { width: 100%; }
 header .banner-text h1 {
-   font: 90px/1.1em 'opensans-bold', sans-serif;
-   color: #fff;
+   font-family: 'Inter', sans-serif;
+   font-size: clamp(2.5rem, 8vw, 5.5rem);
+   line-height: 1.1em;
+   font-weight: 700;
+   color: var(--color-text);
    letter-spacing: -2px;
    margin: 0 auto 18px auto;
    text-shadow: 0px 1px 3px rgba(0, 0, 0, .8);
@@ -73,7 +76,7 @@ header .banner-text h3 {
 }
 header .banner-text h3 span,
 header .banner-text h3 a {
-   color: #fff;
+   color: var(--color-text);
 }
 header .banner-text hr {
    width: 60%;
@@ -94,8 +97,8 @@ header .social li {
    margin: 0 15px;
    padding: 0;
 }
-header .social li a { color: #fff; }
-header .social li a:hover { color: #11ABB0; }
+header .social li a { color: var(--color-text); }
+header .social li a:hover { color: var(--color-secondary); }
 
 /* scrolldown link */
 header .scrolldown a {
@@ -103,13 +106,13 @@ header .scrolldown a {
    bottom: 30px;
    left: 50%;
    margin-left: -29px;
-   color: #fff;
+   color: var(--color-text);
    display: block;
    height: 42px;
    width: 42px;
    font-size: 42px;
    line-height: 42px;
-   color: #fff;
+   color: var(--color-text);
    border-radius: 100%;
 
    -webkit-transition: all .3s ease-in-out;
@@ -117,7 +120,7 @@ header .scrolldown a {
    -o-transition: all .3s ease-in-out;
    transition: all .3s ease-in-out;
 }
-header .scrolldown a:hover { color: #11ABB0; }
+header .scrolldown a:hover { color: var(--color-secondary); }
 
 /* primary navigation
 --------------------------------------------------------------------- */
@@ -179,7 +182,7 @@ ul#nav li a {
 }
 
 ul#nav li a:active { background-color: transparent !important; }
-ul#nav li.current a { color: #F06000; }
+ul#nav li.current a { color: var(--color-accent); }
 
 
 /* ------------------------------------------------------------------ */
@@ -187,14 +190,14 @@ ul#nav li.current a { color: #F06000; }
 /* ------------------------------------------------------------------ */
 
 #about {
-   background: #2B2B2B;
+   background: var(--color-bg-surface);
    padding-top: 96px;
    padding-bottom: 66px;
    overflow: hidden;
 }
 
 #about a, #about a:visited  { color: #fff; }
-#about a:hover, #about a:focus { color: #11ABB0; }
+#about a:hover, #about a:focus { color: var(--color-secondary); }
 
 #about h2 {
    font: 22px/30px 'opensans-bold', sans-serif;
@@ -223,7 +226,7 @@ ul#nav li.current a { color: #F06000; }
 }
 #about .download .button:hover {
    background: #fff;
-   color: #2B2B2B;
+   color: var(--color-bg-surface);
 }
 #about .download .button i {
    margin-right: 15px;
@@ -242,8 +245,8 @@ ul#nav li.current a { color: #F06000; }
    overflow: hidden;
 }
 
-#resume a, #resume a:visited  { color: #11ABB0; }
-#resume a:hover, #resume a:focus { color: #313131; }
+#resume a, #resume a:visited  { color: var(--color-secondary); }
+#resume a:hover, #resume a:focus { color: var(--color-text); }
 
 #resume h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
@@ -251,7 +254,7 @@ ul#nav li.current a { color: #F06000; }
    letter-spacing: 1px;
 }
 #resume h1 span {
-   border-bottom: 3px solid #11ABB0;
+   border-bottom: 3px solid var(--color-secondary);
    padding-bottom: 6px;
 }
 #resume h3 {
@@ -306,7 +309,7 @@ ul#nav li.current a { color: #F06000; }
 }
 .bars li em {
 	font: 15px 'opensans-bold', sans-serif;
-   color: #313131;
+   color: var(--color-text);
 	text-transform: uppercase;
    letter-spacing: 2px;
 	font-weight: normal;
@@ -593,7 +596,7 @@ ul#nav li.current a { color: #F06000; }
    font: 18px/24px 'opensans-bold', sans-serif;
    text-transform: uppercase;
    letter-spacing: 3px;
-   color: #fff;
+   color: var(--color-text);
 }
 #call-to-action h1 span { display: none; }
 #call-to-action .header-col h1:before {
@@ -660,7 +663,7 @@ call-to-action .button {
    font: 18px/24px 'opensans-bold', sans-serif;   
    text-transform: uppercase;
    letter-spacing: 3px;
-   color: #fff;
+   color: var(--color-text);
 }
 #testimonials h1 span { display: none; }
 #testimonials .header-col { padding-top: 9px; }
@@ -688,14 +691,14 @@ call-to-action .button {
    padding: 0;
    font-size: 24px;
    line-height: 48px;
-   color: #fff
+   color: var(--color-text)
 }
 #testimonials blockquote cite {
    display: block;
    font-size: 12px;
    font-style: normal;
    line-height: 18px;
-   color: #fff;
+   color: var(--color-text);
 }
 #testimonials blockquote cite:before { content: "\2014 \0020"; }
 #testimonials blockquote cite a,
@@ -798,8 +801,8 @@ call-to-action .button {
 }
 #contact .section-head { margin-bottom: 42px; }
 
-#contact a, #contact a:visited  { color: #11ABB0; }
-#contact a:hover, #contact a:focus { color: #fff; }
+#contact a, #contact a:visited  { color: var(--color-secondary); }
+#contact a:hover, #contact a:focus { color: var(--color-text); }
 
 #contact h1 {
    font: 18px/24px 'opensans-bold', sans-serif;
@@ -859,7 +862,7 @@ call-to-action .button {
 #contact textarea:focus,
 #contact select:focus {
 	color: #fff;
-	background-color: #11ABB0;
+	background-color: var(--color-secondary);
 }
 #contact button.submit {
 	text-transform: uppercase;
@@ -878,19 +881,19 @@ call-to-action .button {
 	background: #fff;
 }
 #contact span.required {
-	color: #11ABB0;
+	color: var(--color-secondary);
 	font-size: 13px;
 }
 #message-warning, #message-success {
    display: none;
-	background: #0F0F0F;
+	background: var(--color-bg);
 	padding: 24px 24px;
 	margin-bottom: 36px;
    width: 65%;
    margin-left: 26%;
 }
 #message-warning { color: #D72828; }
-#message-success { color: #11ABB0; }
+#message-success { color: var(--color-secondary); }
 
 #message-warning i,
 #message-success i {
@@ -974,7 +977,7 @@ footer .social-links li {
     margin: 0;
     padding: 0;
     margin-left: 42px;
-    color: #F06000;
+    color: var(--color-accent);
 }
 
 footer .social-links li:first-child { margin-left: 0; }

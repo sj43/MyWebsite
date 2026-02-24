@@ -1,10 +1,29 @@
-import React, { Component } from 'react';
-export default class Resume extends Component {
-  render() {
-    let resumeData = this.props.resumeData;
-    let projectData = this.props.projectData;
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-    return (
+const EXPERIENCE_CASE_STUDIES = {
+  'Microsoft': 'microsoft',
+  'Expedia Group': 'expedia',
+};
+
+export default function Resume({ resumeData }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-visible');
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.15 }
+    );
+    revealEls.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
       <React.Fragment>
         {/*generated code*/}
         <section id="resume">
@@ -41,17 +60,37 @@ export default class Resume extends Component {
               <h1><span>Work</span></h1>
             </div>
             <div className="nine columns main-col">
-              {resumeData.experience.map((ex, idx) => {
-                return <div className="row item" key={idx}>
-                <div className="twelve columns">
-                  <h3>{ex.organization}</h3>
-                  <p className="info" >{ex.position} <span>•</span> <em className="date">{ex.date}</em></p>
-                  <p>
-                    {ex.description.map((elem, idx2) => { return <li key={idx2}>{elem}</li> })}
-                  </p>
-                </div>
+              <div className="timeline-wrapper">
+                {resumeData.experience && resumeData.experience.map((item, i) => (
+                  <div key={i} className="timeline-item reveal">
+                    <div className="timeline-dot" />
+                    <div className="timeline-card">
+                      <div className="timeline-header">
+                        <h3 className="timeline-org">{item.organization}</h3>
+                        <span className="timeline-years">{item.date}</span>
+                      </div>
+                      <h4 className="timeline-title">{item.position}</h4>
+                      {item.description && (
+                        <ul className="timeline-bullets">
+                          {item.description.map((desc, j) => (
+                            <li key={j}>{desc}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {EXPERIENCE_CASE_STUDIES[item.organization] && (
+                        <div className="portfolio-card-casestudy" style={{ marginTop: '14px' }}>
+                          <button
+                            className="cs-card-btn"
+                            onClick={() => navigate(`/project/${EXPERIENCE_CASE_STUDIES[item.organization]}`)}
+                          >
+                            Case Study →
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
-              })}
             </div> {/* main-col end */}
           </div> {/* End Work */}
           {/* Skills
@@ -84,30 +123,8 @@ export default class Resume extends Component {
               </div>{/* end skill-bars */}
             </div> {/* main-col end */}
           </div> {/* End skills */}
-          {/* Project & Activity
-      ----------------------------------------------- */}
-          <div className="row project-activity">
-            <div className="three columns header-col">
-              <h1><span>Project & Activity</span></h1>
-            </div>
-            <div className="nine columns main-col">
-            {projectData.projects.map((ex, idx) => {
-                return <div className="row item" key={idx}>
-                <div className="twelve columns">
-                  <h3>{ex.name}</h3>
-                  {/* <p className="info" >{ex.} <span>•</span> <em className="date">{ex.date}</em></p> */}
-                  <p>
-                    {ex.description.map((elem, idx2) => { return <li key={idx2}>{elem}</li> })}
-                  </p>
-                </div>
-              </div>
-              })}
-            </div>
-          </div>
-
 
         </section> {/* Resume Section End*/}
       </React.Fragment>
     );
-  }
 }

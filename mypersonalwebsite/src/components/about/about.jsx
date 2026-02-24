@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-export default class About extends Component {
-  render() {
-    let resumeData = this.props.resumeData;
+import React from 'react';
+export default function About({ resumeData }) {
     return (
       <React.Fragment>
       {/*generated code*/}
@@ -10,18 +8,16 @@ export default class About extends Component {
           <div className="three columns">
             <img className="profile-pic" src="images/profilepic.jpeg" alt="" />
           </div>
-          <div className="nine columns main-col">
+          <div className="nine columns main-col reveal">
             <h2>About Me</h2>
-            <p>I am a {resumeData.role}.
+            <p>{resumeData.bio || `I am a ${resumeData.role}.`}
             </p>
             <div className="row">
               <div className="columns contact-details">
                 <h2>Contact Details</h2>
                 <p className="address">
                   <span>{resumeData.name}</span><br />
-                  <span>{resumeData.email}
-                  </span><br />
-                  <span>{resumeData.phone}</span><br />
+                  <span>{resumeData.email}</span><br />
                   <span>{resumeData.address}</span>
                 </p>
               </div>
@@ -36,5 +32,4 @@ export default class About extends Component {
       </section> {/* About Section End*/}
       </React.Fragment>
     );
-  }
 }
