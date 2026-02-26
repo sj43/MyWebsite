@@ -3,12 +3,11 @@ import type { ProjectData } from '../../types';
 const projectData: ProjectData = {
         "projects": [{
                 "name": "ME.NU",
-                "url": "https://www.eatwithmenu.com",
-                "github": "",
+                "url": "",
+                "github": "https://github.com/sj43/me.nu",
                 "techStack": ["Python", "Flask", "MongoDB", "Docker", "Redis", "AWS Elastic Beanstalk", "AWS ECR", "AWS S3", "AWS CodePipeline", "JWT"],
                 "category": "fullstack",
                 "description": [
-                        "URL: www.eatwithmenu.com",
                         "Ingredient-based personal and customized dish recommendation service across restaurants in Houston",
                         "Built RESTful-API Backend Service with Python Flask and MongoDB database",
                         "Utilized JWT security tokens and Redis in-memory database to authenticate and block access, refresh tokens",
@@ -31,7 +30,7 @@ const projectData: ProjectData = {
         }, {
                 "name": "Py-JMB",
                 "url": "",
-                "github": "",
+                "github": "https://github.com/sj43/py-jmb",
                 "techStack": ["Python"],
                 "category": "tool",
                 "description": [

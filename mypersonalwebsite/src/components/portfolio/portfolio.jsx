@@ -8,6 +8,7 @@ const SLUG_MAP = {
   'Hackathons': 'hackathons',
   'ICPC': 'icpc',
   'International Collegiate Programming Competition (ICPC)': 'icpc',
+  'Py-JMB': 'py-jmb',
 };
 
 const FILTERS = [

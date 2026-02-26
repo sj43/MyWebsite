@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ContactUs() {
+export default function ContactUs({ resumeData }) {
     return (
       <section id="contact">
         <div className="row">
@@ -8,19 +8,26 @@ export default function ContactUs() {
             <h1><span>Get In Touch</span></h1>
           </div>
           <div className="nine columns main-col">
-            <p className="lead">
-              I'm open to full-time software engineering roles. Feel free to reach out!
-            </p>
-            <div className="contact-cta">
-              <a href="mailto:sj43@rice.edu" className="button contact-btn">
-                <i className="fa fa-envelope" /> Email Me
-              </a>
-              <a href="https://www.linkedin.com/in/shjang956/?locale=en_US" target="_blank" rel="noopener noreferrer" className="button contact-btn contact-btn-secondary">
-                <i className="fa fa-linkedin" /> LinkedIn
-              </a>
-              <a href="https://github.com/sj43" target="_blank" rel="noopener noreferrer" className="button contact-btn contact-btn-secondary">
-                <i className="fa fa-github" /> GitHub
-              </a>
+            <div className="timeline-wrapper">
+              <div className="timeline-item">
+                <div className="timeline-dot" />
+                <div className="timeline-card">
+                  <p className="timeline-about-text">
+                    Based in {resumeData.address}. Feel free to reach out at{' '}
+                    <a href={`mailto:${resumeData.email}`}>{resumeData.email}</a>.
+                  </p>
+                  <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '14px'}}>
+                    <a href={`mailto:${resumeData.email}`} className="btn-inline">
+                      <i className="fa fa-envelope" style={{marginRight: '6px'}} /> Email Me
+                    </a>
+                    {resumeData.resumeLink && (
+                      <a href={resumeData.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-inline">
+                        Download Resume <i className="fa fa-download" style={{marginLeft: '6px'}} />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

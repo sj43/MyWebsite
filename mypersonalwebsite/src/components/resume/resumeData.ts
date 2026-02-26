@@ -9,7 +9,7 @@ const resumeData: ResumeData = {
   "email": "seunghunjang956@gmail.com",
   "education": {
     "school": "Rice University",
-    "major": "B.S. in Computer Science",
+    "major": "Bachelors in Computer Science",
     "year": "Senior",
     "date": "May 2021",
     "gpa": "3.76/4.0"
@@ -66,7 +66,7 @@ const resumeData: ResumeData = {
       ]     
     },
     {
-      "organization": "Migeum Computer and Robotics Learning Center",
+      "organization": "Migeum Computer and Robotics",
       "location": "Yongin, South Korea",
       "position": "Programming Language Teaching Assistant",
       "date": "Apr 2018 - Aug 2018",

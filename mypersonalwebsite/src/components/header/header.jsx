@@ -1,47 +1,50 @@
-import React, { useState, useEffect } from 'react';
-
-const scrollTo = (id) => (e) => {
-  e.preventDefault();
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-};
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const NAV_ITEMS = [
   { id: 'resume',       label: 'Experience' },
   { id: 'portfolio',    label: 'Projects' },
-  { id: 'skills',       label: 'Skills' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'education',    label: 'Education' },
-  { id: 'about',        label: 'About' },
-  { id: 'contact',      label: 'Contact' },
+  { id: 'contact',      label: 'Get In Touch' },
 ];
 
 export default function Header({ resumeData, theme, toggleTheme }) {
   const [activeSection, setActiveSection] = useState('resume');
+  const clickLockRef = useRef(null);   // holds the section id during a nav-click scroll
+
+  // Nav-click handler: set the section immediately and suppress scroll
+  // detection for 800ms so smooth-scroll doesn't override the choice.
+  const scrollTo = useCallback((id) => (e) => {
+    e.preventDefault();
+    setActiveSection(id);
+    clickLockRef.current = id;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => { clickLockRef.current = null; }, 800);
+  }, []);
 
   useEffect(() => {
     const ids = NAV_ITEMS.map(n => n.id);
-    const visibleSections = new Map();
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            visibleSections.set(entry.target.id, entry.intersectionRatio);
-          } else {
-            visibleSections.delete(entry.target.id);
-          }
-        });
-        // Pick the first visible section in DOM order
-        const active = ids.find(id => visibleSections.has(id));
-        if (active) setActiveSection(active);
-      },
-      { threshold: [0, 0.15, 0.3], rootMargin: '0px 0px -50% 0px' }
-    );
-    ids.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+
+    const detectActive = () => {
+      // While a nav-click smooth-scroll is in progress, don't override.
+      if (clickLockRef.current) return;
+
+      // A section activates when its top crosses 200px below the viewport top.
+      const offset = 200;
+      let best = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= offset) {
+          best = id;
+        }
+      }
+      setActiveSection(best);
+    };
+
+    window.addEventListener('scroll', detectActive, { passive: true });
+    detectActive(); // set initial active section
+    return () => window.removeEventListener('scroll', detectActive);
   }, []);
 
   return (

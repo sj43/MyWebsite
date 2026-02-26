@@ -192,6 +192,45 @@ const caseStudies: CaseStudyItem[] = [
     ]
   },
   {
+    slug: 'py-jmb',
+    name: 'Py-JMB',
+    tagline: 'C++ → Python translation of a Korean algorithmic problem-solving textbook',
+    category: 'Open Source · Tool',
+    techStack: ['Python', 'Algorithms', 'Data Structures', 'PEP 8'],
+    github: 'https://github.com/sj43/py-jmb',
+    overview:
+      'Py-JMB is a Python translation of JMB (프로그래밍 대회에서 배우는 알고리즘 문제 해결 전략), a popular Korean textbook on algorithmic problem-solving strategies. The original book uses C++ for all examples. Many readers could not follow the code because they didn\'t know C++, so I received permission from the author to translate all examples into clean, PEP 8-compliant Python — with complete I/O sections so solutions can be submitted directly to online judges.',
+    sections: [
+      {
+        heading: 'Motivation',
+        body: [
+          'JMB is one of the most widely recommended algorithm books in the Korean competitive programming community, but its C++-only examples created a barrier for Python programmers. Common feedback included: "I don\'t know C++ so the example code doesn\'t make sense" and "I wish I could submit the solutions directly to practice."',
+          'After meeting the author and receiving permission, I started translating every chapter\'s example solutions into idiomatic Python 2.7, preserving the algorithmic logic while making the code Pythonic and PEP 8-compliant.'
+        ]
+      },
+      {
+        heading: 'Translation Approach',
+        body: [
+          'Each C++ solution was rewritten in Python with an emphasis on readability and Pythonic idioms — replacing raw pointer arithmetic with list slicing, using Python\'s built-in data structures where appropriate, and converting I/O patterns to work with online judge systems.',
+          'Every translated solution includes complete input/output handling so the code can be copied and submitted directly to online judges without modification. This was a deliberate design choice: the original book omitted I/O sections, requiring readers to write boilerplate themselves.',
+          'The project is organized chapter-by-chapter, mirroring the book\'s structure so readers can cross-reference the Python solution with the original C++ version side by side.'
+        ]
+      },
+      {
+        heading: 'Topics Covered',
+        body: [
+          'The book — and this translation — covers a comprehensive range of competitive programming topics: brute force, divide and conquer, dynamic programming, greedy algorithms, combinatorics, number theory, computational geometry, graph algorithms (BFS/DFS, shortest paths, network flow, matching), string processing, and advanced data structures (segment trees, Fenwick trees, union-find).',
+        ]
+      }
+    ],
+    outcomes: [
+      '📖 Full Python translation of JMB algorithmic textbook with author\'s permission',
+      '✅ All solutions include complete I/O — directly submittable to online judges',
+      '🐍 PEP 8-compliant, idiomatic Python throughout',
+      '📂 Chapter-by-chapter organization mirroring the original book',
+    ]
+  },
+  {
     slug: 'expedia',
     name: 'Expedia Group — Platform Architecture',
     tagline: 'Docs-as-code platform for 10,000+ internal applications at Expedia',

@@ -10,13 +10,16 @@ export default function Achievements({ resumeData }) {
             <h1><span>Achievements</span></h1>
           </div>
           <div className="nine columns main-col">
-            <div className="achievements-grid">
+            <div className="timeline-wrapper">
               {resumeData.achievements.map((item, i) => (
-                <div key={i} className="achievement-item">
-                  <i className={item.icon + " achievement-icon"} />
-                  <div className="achievement-content">
-                    <h5>{item.title}</h5>
-                    <p>{item.description}</p>
+                <div key={i} className="timeline-item">
+                  <div className="timeline-dot" />
+                  <div className="achievement-item">
+                    <i className={item.icon + " achievement-icon"} />
+                    <div className="achievement-content">
+                      <h5>{item.title}</h5>
+                      <p>{item.description}</p>
+                    </div>
                   </div>
                 </div>
               ))}

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/header/header';
-import About from './components/about/about';
 import Resume from './components/resume/resume';
-import Skills from './components/skills/skills';
 import Achievements from './components/achievements/achievements';
 import Education from './components/education/education';
 import ContactUs from './components/contactus/contactus';
@@ -23,11 +21,9 @@ function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
         <main className="content-col">
           <Resume resumeData={resumeData} projectData={projectData}/>
           <Portfolio projectData={projectData}/>
-          <Skills resumeData={resumeData}/>
           <Achievements resumeData={resumeData}/>
           <Education resumeData={resumeData}/>
-          <About resumeData={resumeData}/>
-          <ContactUs />
+          <ContactUs resumeData={resumeData} />
           {/* <Testimonials /> */}
           <Footer />
         </main>

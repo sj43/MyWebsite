@@ -8,15 +8,16 @@ export default function Education({ resumeData }) {
           <h1><span>Education</span></h1>
         </div>
         <div className="nine columns main-col">
-          <div className="row item">
-            <div className="twelve columns">
-              <h3>{resumeData.education.school}</h3>
-              <p className="info">{resumeData.education.major}
-                <span>•</span>
-                <em className="date">{resumeData.education.date}</em>
-                <span>•</span>
-                <em className="date">GPA: {resumeData.education.gpa}</em>
-              </p>
+          <div className="timeline-wrapper">
+            <div className="timeline-item">
+              <div className="timeline-dot" />
+              <div className="timeline-card">
+                <div className="timeline-header">
+                  <h3 className="timeline-org">{resumeData.education.school}</h3>
+                  <span className="timeline-years">{resumeData.education.date}</span>
+                </div>
+                <h4 className="timeline-title">{resumeData.education.major} · GPA: {resumeData.education.gpa}</h4>
+              </div>
             </div>
           </div>
         </div>

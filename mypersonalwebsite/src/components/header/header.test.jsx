@@ -20,8 +20,8 @@ describe('Header', () => {
 
   test('renders navigation links', () => {
     render(<Header resumeData={resumeData} theme="dark" toggleTheme={mockToggleTheme} />);
-    expect(screen.getByText(/About/i)).toBeInTheDocument();
     expect(screen.getByText(/Experience/i)).toBeInTheDocument();
+    expect(screen.getByText(/Get In Touch/i)).toBeInTheDocument();
   });
 
   test('renders theme toggle button', () => {

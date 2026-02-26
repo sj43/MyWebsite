@@ -78,12 +78,12 @@ body { background: var(--color-bg); }
 
 .sidebar-name {
   font-family: var(--font-display) !important;
-  font-size: clamp(3.2rem, 6vw, 4.5rem) !important;
+  font-size: clamp(3.6rem, 7vw, 5rem) !important;
   font-weight: 800 !important;
   color: var(--color-text) !important;
-  letter-spacing: -1.5px !important;
-  line-height: 1.0 !important;
-  margin: 0 0 16px 0 !important;
+  letter-spacing: -2px !important;
+  line-height: 0.95 !important;
+  margin: 0 0 20px 0 !important;
 }
 
 .sidebar-role {
@@ -95,7 +95,7 @@ body { background: var(--color-bg); }
 }
 
 .sidebar-bio {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.7;
   color: var(--color-text-muted);
   margin: 0;
@@ -117,7 +117,7 @@ body { background: var(--color-bg); }
   gap: 14px;
   text-decoration: none;
   color: var(--color-text-muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -130,7 +130,7 @@ body { background: var(--color-bg); }
 
 .sidebar-nav-item:hover,
 .sidebar-nav-item:focus {
-  color: var(--color-text);
+  color: var(--color-text-muted);
   text-decoration: none;
 }
 
@@ -149,7 +149,10 @@ body { background: var(--color-bg); }
 }
 
 .sidebar-nav-item:hover .nav-line,
-.sidebar-nav-item:focus .nav-line,
+.sidebar-nav-item:focus .nav-line {
+  width: 40px;
+}
+
 .sidebar-nav-item.active .nav-line {
   width: 56px;
 }
@@ -260,7 +263,7 @@ body { background: var(--color-bg); }
 }
 
 #about p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
   color: var(--color-text-muted);
   margin-bottom: 16px;
@@ -277,7 +280,7 @@ body { background: var(--color-bg); }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--color-text-muted);
   margin: 0;
 }
@@ -299,12 +302,13 @@ body { background: var(--color-bg); }
 .btn-inline {
   display: inline-flex;
   align-items: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text-muted);
+  background: var(--color-bg-surface);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-sm);
-  padding: 8px 16px;
+  padding: 10px 20px;
   text-decoration: none;
   transition: all 0.2s ease;
   margin-top: 8px;
@@ -312,7 +316,7 @@ body { background: var(--color-bg); }
 
 .btn-inline:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-text);
+  border-color: rgba(255, 255, 255, 0.3);
   color: var(--color-text);
 }
 
@@ -421,7 +425,8 @@ ul#nav li.current a { color: var(--color-accent); }
 }
 
 #resume .info {
-   font: 16px/24px 'librebaskerville-italic', serif;
+   font: 16px/24px var(--font-body);
+   font-style: normal;
    color: #6E7881;
    margin-bottom: 18px;
    margin-top: 9px;

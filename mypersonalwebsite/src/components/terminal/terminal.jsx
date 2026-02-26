@@ -47,10 +47,8 @@ const COMMANDS = {
 };
 
 const WELCOME = [
-  '  ┌──────────────────────────────────────────────────┐',
-  `  │  Welcome to ${resumeData.name}'s terminal`.padEnd(53) + '│',
-  '  │  Type "help" to see available commands           │',
-  '  └──────────────────────────────────────────────────┘',
+  `  Welcome to ${resumeData.name}'s terminal`,
+  '  Type "help" to see available commands.',
   '',
 ];
 
@@ -132,7 +130,7 @@ export default function Terminal({ onClose }) {
             <span className="dot dot-yellow" />
             <span className="dot dot-green" />
           </div>
-          <span className="terminal-title">sj43 — portfolio terminal</span>
+          <span className="terminal-title">TERMINAL</span>
         </div>
         <div className="terminal-body">
           {history.map((line, i) => (

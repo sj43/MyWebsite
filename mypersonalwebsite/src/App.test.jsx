@@ -65,6 +65,6 @@ describe('App', () => {
 
   test('renders Contact section', () => {
     renderApp();
-    expect(screen.getByText(/Get In Touch/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Get In Touch/i).length).toBeGreaterThan(0);
   });
 });
