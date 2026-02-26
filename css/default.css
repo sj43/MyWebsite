@@ -30,6 +30,63 @@ e. Others
 @import url("fontello/css/fontello.css");
 @import url("font-awesome/css/font-awesome.min.css");
 
+/* ============================================================
+   CSS Custom Properties — Design Tokens
+   "Refined Signal" palette: deep dark + amber/gold precision
+   ============================================================ */
+:root {
+  /* Background layers */
+  --color-bg: #111111;
+  --color-bg-surface: #1A1A1A;
+  --color-bg-surface-hover: #222222;
+
+  /* Primary accent — white */
+  --color-accent: #FFFFFF;
+  --color-accent-light: #E0E0E0;
+  --color-accent-rgb: 255, 255, 255;
+
+  /* Secondary accent — light grey */
+  --color-secondary: #B0B0B0;
+  --color-secondary-light: #D0D0D0;
+
+  /* Text */
+  --color-text: #E8E8E8;
+  --color-text-muted: #999999;
+  --color-text-subtle: #555555;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-accent: rgba(255, 255, 255, 0.2);
+
+  /* Section backgrounds — unified to match body */
+  --color-section-dark: #111111;
+  --color-section-light: #111111;
+  --color-section-alt: #111111;
+
+  /* Functional */
+  --color-success: #10B981;
+  --color-white: #FFFFFF;
+
+  /* Spacing */
+  --section-padding: clamp(4rem, 8vw, 6rem);
+
+  /* Font families — unified to Inter */
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Inter', sans-serif;
+
+  /* Border radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 4px 28px rgba(0, 0, 0, 0.5);
+  --shadow-accent: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
 /* ------------------------------------------------------------------
 /* b. Reset
       Adapted from:
@@ -139,15 +196,16 @@ table {
 html {
    font-size: 62.5%;
    -webkit-font-smoothing: antialiased;
+   scroll-behavior: smooth;
 }
 
 body {
    background: #fff;
-   font-family: 'opensans-regular', sans-serif;
+   font-family: 'DM Sans', sans-serif;
    font-weight: normal;
    font-size: 15px;
    line-height: 30px;
-	color: #838C95;
+	color: var(--color-text-muted);
 
    -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 	-webkit-text-size-adjust: 100%;
@@ -158,8 +216,8 @@ body {
 --------------------------------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-   color: #313131;
-	font-family: 'opensans-bold', sans-serif;
+   color: var(--color-text);
+	font-family: 'Syne', sans-serif;
    font-weight: normal;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
@@ -288,14 +346,14 @@ hr { border: solid #E3E3E3; border-width: 1px 0 0; clear: both; margin: 11px 0 3
 a, a:visited {
    text-decoration: none;
    outline: 0;
-   color: #11ABB0;
+   color: var(--color-secondary);
 
    -webkit-transition: color .3s ease-in-out;
    -moz-transition: color .3s ease-in-out;
    -o-transition: color .3s ease-in-out;
    transition: color .3s ease-in-out;
 }
-a:hover, a:focus { color: #313131; }
+a:hover, a:focus { color: var(--color-text); }
 p a, p a:visited { line-height: inherit; }
 
 
@@ -346,10 +404,10 @@ li p { }
 	font-size: 22px;
 	font-family: 'opensans-bold', sans-serif;
    border: none;
-   color: #313131;
+   color: var(--color-text);
 }
 .stats-tabs li a:hover {
-   color:#11ABB0;
+   color: var(--color-secondary);
 }
 .stats-tabs li a b {
 	display: block;
@@ -361,7 +419,7 @@ li p { }
 
 /* definition list */
 dl { margin: 12px 0; }
-dt { margin: 0; color:#11ABB0; }
+dt { margin: 0; color: var(--color-secondary); }
 dd { margin: 0 0 0 20px; }
 
 /* Lining Definition Style Markup */
@@ -436,7 +494,7 @@ dd { margin: 0 0 0 20px; }
 }
 .pagination .current,
 .pagination .current:hover {
-   background-color: #11ABB0;
+   background-color: var(--color-secondary);
    color: #fff;
 }
 .pagination .inactive,
@@ -464,7 +522,7 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"] {
    font: 16px/30px 'opensans-bold', sans-serif;
-   background: #11ABB0;
+   background: var(--color-secondary);
    display: inline-block;
 	text-decoration: none;
    letter-spacing: 0;
@@ -805,3 +863,256 @@ properly.
 
 
 
+
+/* Project links */
+.project-link {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 10px;
+  font-size: 12px;
+  border: 1px solid var(--color-secondary);
+  border-radius: 12px;
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.project-link:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* Tech stack tags */
+.tech-stack {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  color: var(--color-secondary);
+}
+
+/* ===== Skills Section ===== */
+#skills {
+  background: var(--color-bg);
+  padding-top: 90px;
+  padding-bottom: 72px;
+  overflow: hidden;
+}
+#skills .header-col { padding-top: 9px; }
+.skill-category { margin-bottom: 24px; }
+.skill-category-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6E7881;
+  margin-bottom: 10px;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  color: var(--color-secondary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.skill-badge:hover {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+/* ===== Achievements Section ===== */
+#achievements {
+  background: var(--color-bg);
+  padding-top: 90px;
+  padding-bottom: 72px;
+}
+#achievements .header-col { padding-top: 9px; }
+.achievements-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.achievement-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 6px;
+  border-left: 3px solid var(--color-secondary);
+}
+.achievement-icon {
+  font-size: 20px;
+  color: var(--color-secondary);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.achievement-content h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 4px 0;
+}
+.achievement-content p {
+  font-size: 13px;
+  color: #6E7881;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== Contact Section ===== */
+#contact {
+  background: var(--color-bg);
+  padding-top: 90px;
+  padding-bottom: 72px;
+}
+#contact .lead {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #6E7881;
+}
+.contact-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.contact-btn-secondary {
+  background: transparent !important;
+  color: var(--color-secondary) !important;
+  border: 2px solid var(--color-secondary) !important;
+}
+.contact-btn-secondary:hover {
+  background: var(--color-secondary) !important;
+  color: #fff !important;
+}
+
+/* ===== Scroll Reveal Animations ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== Timeline Experience Cards ===== */
+.timeline-wrapper {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-accent), var(--color-secondary));
+  opacity: 0.4;
+  border-radius: 2px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: 2px solid var(--color-bg);
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+.timeline-card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.timeline-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: var(--shadow-accent);
+  transform: translateY(-2px);
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.timeline-org {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+.timeline-years {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+.timeline-title {
+  font-size: 13px;
+  color: var(--color-secondary);
+  font-weight: 500;
+  margin: 0 0 12px 0;
+}
+.timeline-bullets {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--color-text-muted);
+}
+.timeline-bullets li {
+  font-size: 13px;
+  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+/* ===== Skill Badge Monospace ===== */
+.skill-badge {
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+}
