@@ -3,9 +3,9 @@ import type { ResumeData } from '../../types';
 const resumeData: ResumeData = {
   "imagebaseurl": "https://sj43.github.io/MyWebsite/",
   "name": "Seung Hun Jang",
-  "role": "Software Engineer II at Microsoft",
+  "role": "Software Engineer",
   "bio": "Software Engineer at Microsoft, building intelligent systems that automate the delivery of Windows updates at scale.",
-  "address": "Houston, TX",
+  "address": "Kirkland, WA",
   "email": "seunghunjang956@gmail.com",
   "education": {
     "school": "Rice University",

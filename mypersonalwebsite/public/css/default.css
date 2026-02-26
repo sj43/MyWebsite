@@ -36,32 +36,32 @@ e. Others
    ============================================================ */
 :root {
   /* Background layers */
-  --color-bg: #08090E;
-  --color-bg-surface: #10121A;
-  --color-bg-surface-hover: #181B28;
+  --color-bg: #111111;
+  --color-bg-surface: #1A1A1A;
+  --color-bg-surface-hover: #222222;
 
-  /* Primary accent — amber/gold */
-  --color-accent: #F0A500;
-  --color-accent-light: #FFD166;
-  --color-accent-rgb: 240, 165, 0;
+  /* Primary accent — white */
+  --color-accent: #FFFFFF;
+  --color-accent-light: #E0E0E0;
+  --color-accent-rgb: 255, 255, 255;
 
-  /* Secondary accent — steel blue */
-  --color-secondary: #6B9FE4;
-  --color-secondary-light: #93C5FD;
+  /* Secondary accent — light grey */
+  --color-secondary: #B0B0B0;
+  --color-secondary-light: #D0D0D0;
 
   /* Text */
-  --color-text: #EDE8DC;
-  --color-text-muted: #888B9E;
-  --color-text-subtle: #4E5068;
+  --color-text: #E8E8E8;
+  --color-text-muted: #999999;
+  --color-text-subtle: #555555;
 
   /* Borders */
-  --color-border: rgba(255, 255, 255, 0.05);
-  --color-border-accent: rgba(240, 165, 0, 0.3);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-accent: rgba(255, 255, 255, 0.2);
 
-  /* Section backgrounds */
-  --color-section-dark: #08090E;
-  --color-section-light: #0E101A;
-  --color-section-alt: #10121A;
+  /* Section backgrounds — unified to match body */
+  --color-section-dark: #111111;
+  --color-section-light: #111111;
+  --color-section-alt: #111111;
 
   /* Functional */
   --color-success: #10B981;
@@ -70,10 +70,10 @@ e. Others
   /* Spacing */
   --section-padding: clamp(4rem, 8vw, 6rem);
 
-  /* Font families */
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  /* Font families — unified to Inter */
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Inter', sans-serif;
 
   /* Border radius */
   --radius-sm: 3px;
@@ -84,7 +84,7 @@ e. Others
 
   /* Shadows */
   --shadow-card: 0 4px 28px rgba(0, 0, 0, 0.5);
-  --shadow-accent: 0 0 0 1px rgba(240, 165, 0, 0.25), 0 8px 32px rgba(240, 165, 0, 0.08);
+  --shadow-accent: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* ------------------------------------------------------------------
@@ -892,15 +892,15 @@ properly.
   display: inline-block;
   padding: 2px 8px;
   font-size: 11px;
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   color: var(--color-secondary);
 }
 
 /* ===== Skills Section ===== */
 #skills {
-  background: #fff;
+  background: var(--color-bg);
   padding-top: 90px;
   padding-bottom: 72px;
   overflow: hidden;
@@ -924,8 +924,8 @@ properly.
   display: inline-block;
   padding: 4px 12px;
   font-size: 12px;
-  background: rgba(6, 182, 212, 0.08);
-  border: 1px solid rgba(6, 182, 212, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 20px;
   color: var(--color-secondary);
   font-weight: 500;
@@ -938,7 +938,7 @@ properly.
 
 /* ===== Achievements Section ===== */
 #achievements {
-  background: #f1f1f1;
+  background: var(--color-bg);
   padding-top: 90px;
   padding-bottom: 72px;
 }
@@ -978,7 +978,7 @@ properly.
 
 /* ===== Contact Section ===== */
 #contact {
-  background: #fff;
+  background: var(--color-bg);
   padding-top: 90px;
   padding-bottom: 72px;
 }
@@ -1067,7 +1067,7 @@ properly.
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .timeline-card:hover {
-  border-color: rgba(124, 58, 237, 0.4);
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow: var(--shadow-accent);
   transform: translateY(-2px);
 }
@@ -1088,8 +1088,8 @@ properly.
 .timeline-years {
   font-size: 12px;
   color: var(--color-text-muted);
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-full);
   padding: 2px 10px;
   white-space: nowrap;

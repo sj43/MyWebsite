@@ -5,6 +5,7 @@ import About from './components/about/about';
 import Resume from './components/resume/resume';
 import Skills from './components/skills/skills';
 import Achievements from './components/achievements/achievements';
+import Education from './components/education/education';
 import ContactUs from './components/contactus/contactus';
 import Portfolio from './components/portfolio/portfolio';
 import Terminal from './components/terminal/terminal';
@@ -17,15 +18,20 @@ import projectData from './components/resume/projectData';
 function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
   return (
     <div className="App">
-      <Header resumeData={resumeData} theme={theme} toggleTheme={toggleTheme}/>
-      <About resumeData={resumeData}/>
-      <Resume resumeData={resumeData} projectData={projectData}/>
-      <Portfolio projectData={projectData}/>
-      <Skills resumeData={resumeData}/>
-      <Achievements resumeData={resumeData}/>
-      <ContactUs />
-      {/* <Testimonials /> */}
-      <Footer />
+      <div className="site-layout">
+        <Header resumeData={resumeData} theme={theme} toggleTheme={toggleTheme}/>
+        <main className="content-col">
+          <Resume resumeData={resumeData} projectData={projectData}/>
+          <Portfolio projectData={projectData}/>
+          <Skills resumeData={resumeData}/>
+          <Achievements resumeData={resumeData}/>
+          <Education resumeData={resumeData}/>
+          <About resumeData={resumeData}/>
+          <ContactUs />
+          {/* <Testimonials /> */}
+          <Footer />
+        </main>
+      </div>
       <button
         className="terminal-fab"
         onClick={() => setTerminalOpen(true)}
@@ -51,6 +57,15 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {

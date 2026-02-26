@@ -1,35 +1,29 @@
 import React from 'react';
 export default function About({ resumeData }) {
     return (
-      <React.Fragment>
-      {/*generated code*/}
       <section id="about">
         <div className="row">
-          <div className="three columns">
-            <img className="profile-pic" src="images/profilepic.jpeg" alt="" />
+          <div className="three columns header-col">
+            <h1><span>About</span></h1>
           </div>
           <div className="nine columns main-col reveal">
-            <h2>About Me</h2>
-            <p>{resumeData.bio || `I am a ${resumeData.role}.`}
-            </p>
-            <div className="row">
-              <div className="columns contact-details">
-                <h2>Contact Details</h2>
-                <p className="address">
-                  <span>{resumeData.name}</span><br />
-                  <span>{resumeData.email}</span><br />
-                  <span>{resumeData.address}</span>
-                </p>
-              </div>
-              <div className="columns download">
-                <p>
-                  <a href={resumeData.resumeLink} className="button"><i className="fa fa-download" />Download Resume</a>
-                </p>
-              </div>
-            </div> {/* end row */}
-          </div> {/* end .main-col */}
+            <div className="about-details">
+              <p className="about-contact">
+                <span className="about-detail-label">Email</span>
+                <a href={`mailto:${resumeData.email}`}>{resumeData.email}</a>
+              </p>
+              <p className="about-contact">
+                <span className="about-detail-label">Location</span>
+                <span>{resumeData.address}</span>
+              </p>
+            </div>
+            {resumeData.resumeLink && (
+              <a href={resumeData.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-inline">
+                Download Resume <i className="fa fa-download" style={{marginLeft: '6px'}} />
+              </a>
+            )}
+          </div>
         </div>
-      </section> {/* About Section End*/}
-      </React.Fragment>
+      </section>
     );
 }

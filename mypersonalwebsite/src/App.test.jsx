@@ -40,9 +40,9 @@ describe('App', () => {
     renderApp();
   });
 
-  test('renders About Me section', () => {
+  test('renders About section', () => {
     renderApp();
-    expect(screen.getByText(/About Me/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/About/i).length).toBeGreaterThan(0);
   });
 
   test('renders Resume/Work Experience section', () => {
@@ -54,8 +54,8 @@ describe('App', () => {
 
   test('renders navigation', () => {
     renderApp();
-    expect(screen.getAllByText(/Home/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/About/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Experience/i).length).toBeGreaterThan(0);
   });
 
   test('renders Skills section', () => {

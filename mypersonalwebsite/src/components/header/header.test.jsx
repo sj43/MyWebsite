@@ -20,8 +20,8 @@ describe('Header', () => {
 
   test('renders navigation links', () => {
     render(<Header resumeData={resumeData} theme="dark" toggleTheme={mockToggleTheme} />);
-    expect(screen.getByText(/Home/i)).toBeInTheDocument();
     expect(screen.getByText(/About/i)).toBeInTheDocument();
+    expect(screen.getByText(/Experience/i)).toBeInTheDocument();
   });
 
   test('renders theme toggle button', () => {
@@ -29,9 +29,9 @@ describe('Header', () => {
     expect(screen.getByRole('button', { name: /toggle theme/i })).toBeInTheDocument();
   });
 
-  test('renders CTA buttons', () => {
+  test('renders social links', () => {
     render(<Header resumeData={resumeData} theme="dark" toggleTheme={mockToggleTheme} />);
-    expect(screen.getByText(/View My Work/i)).toBeInTheDocument();
-    expect(screen.getByText(/Download Resume/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/LinkedIn/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/GitHub/i)).toBeInTheDocument();
   });
 });

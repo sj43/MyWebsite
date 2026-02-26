@@ -51,7 +51,7 @@ export default function Portfolio({ projectData }) {
 
           <div className="portfolio-grid">
             {filtered.map((project, i) => (
-              <div key={i} className="portfolio-card reveal">
+              <div key={i} className="portfolio-card">
                 <div className="portfolio-card-header">
                   <h3 className="portfolio-card-name">{project.name}</h3>
                   <div className="portfolio-card-links">
