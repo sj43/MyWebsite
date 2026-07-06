@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
-import caseStudies from './caseStudyData';
+import { useParams, Link } from 'react-router-dom';
+import { getSectionPath, SECTION_IDS } from '../../config/sections';
+import { getCaseStudyBySlug, getRelatedCaseStudies } from './caseStudyLinks';
 import Diagram from './Diagram';
+
+const projectsPath = getSectionPath(SECTION_IDS.projects);
 
 export default function CaseStudy({ theme, toggleTheme }) {
   const { slug } = useParams();
-  const navigate = useNavigate();
-  const cs = caseStudies.find(c => c.slug === slug);
+  const cs = getCaseStudyBySlug(slug);
+  const relatedCaseStudies = getRelatedCaseStudies(slug);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,7 +28,7 @@ export default function CaseStudy({ theme, toggleTheme }) {
     <div className="casestudy-page">
       {/* Nav bar */}
       <nav className="cs-nav">
-        <Link to="/#portfolio" className="cs-back-btn">
+        <Link to={projectsPath} className="cs-back-btn">
           ← Back to Projects
         </Link>
         <button
@@ -93,14 +96,11 @@ export default function CaseStudy({ theme, toggleTheme }) {
 
         {/* Navigation between case studies */}
         <div className="cs-nav-footer">
-          <Link to="/#portfolio" className="cs-back-btn cs-back-btn-large">
+          <Link to={projectsPath} className="cs-back-btn cs-back-btn-large">
             ← View All Projects
           </Link>
           <div className="cs-other-studies">
-            {caseStudies
-              .filter(c => c.slug !== slug)
-              .slice(0, 2)
-              .map(c => (
+            {relatedCaseStudies.map(c => (
                 <Link
                   key={c.slug}
                   className="cs-other-btn"

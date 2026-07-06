@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/header/header';
 import Resume from './components/resume/resume';
 import Achievements from './components/achievements/achievements';
@@ -11,6 +11,11 @@ import CaseStudy from './components/casestudy/CaseStudy';
 import Footer from './components/footer/footer';
 import resumeData from './components/resume/resumeData';
 import projectData from './components/resume/projectData';
+import useHashScroll from './hooks/useHashScroll';
+import useRouteScrollReveal from './hooks/useRouteScrollReveal';
+import useSpotlightCursor from './hooks/useSpotlightCursor';
+import useTerminalShortcut from './hooks/useTerminalShortcut';
+import useTheme from './hooks/useTheme';
 
 function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
   return (
@@ -40,58 +45,15 @@ function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
 }
 
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  });
+  const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const openTerminal = useCallback(() => setTerminalOpen(true), []);
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    const handler = (e) => {
-      // Open terminal on '/' or '`' key, but not when typing in an input
-      if ((e.key === '/' || e.key === '`') &&
-          document.activeElement.tagName !== 'INPUT' &&
-          document.activeElement.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        setTerminalOpen(true);
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
-
-  // Global scroll-reveal animation observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('reveal-visible');
-          observer.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.15 }
-    );
-    const revealEls = document.querySelectorAll('.reveal');
-    revealEls.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
+  useSpotlightCursor();
+  useTerminalShortcut(openTerminal);
+  useRouteScrollReveal(location);
+  useHashScroll(location);
 
   return (
     <Routes>

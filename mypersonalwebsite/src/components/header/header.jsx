@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-
-const NAV_ITEMS = [
-  { id: 'resume',       label: 'Experience' },
-  { id: 'portfolio',    label: 'Projects' },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'education',    label: 'Education' },
-  { id: 'contact',      label: 'Get In Touch' },
-];
+import { DEFAULT_SECTION_ID, getSectionHash, getSectionIds, NAV_ITEMS } from '../../config/sections';
 
 export default function Header({ resumeData, theme, toggleTheme }) {
-  const [activeSection, setActiveSection] = useState('resume');
+  const [activeSection, setActiveSection] = useState(DEFAULT_SECTION_ID);
   const clickLockRef = useRef(null);   // holds the section id during a nav-click scroll
 
   // Nav-click handler: set the section immediately and suppress scroll
@@ -24,7 +17,7 @@ export default function Header({ resumeData, theme, toggleTheme }) {
   }, []);
 
   useEffect(() => {
-    const ids = NAV_ITEMS.map(n => n.id);
+    const ids = getSectionIds();
 
     const detectActive = () => {
       // While a nav-click smooth-scroll is in progress, don't override.
@@ -67,7 +60,7 @@ export default function Header({ resumeData, theme, toggleTheme }) {
         {NAV_ITEMS.map(({ id, label }) => (
           <a
             key={id}
-            href={`#${id}`}
+            href={getSectionHash(id)}
             onClick={scrollTo(id)}
             className={`sidebar-nav-item${activeSection === id ? ' active' : ''}`}
           >

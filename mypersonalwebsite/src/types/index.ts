@@ -17,6 +17,7 @@ export interface Experience {
   position?: string;
   date?: string;
   years?: string;
+  caseStudySlug?: string;
   description: string[];
 }
 
@@ -24,6 +25,12 @@ export interface Achievement {
   icon: string;
   title: string;
   description: string;
+}
+
+export interface SocialLink {
+  label: string;
+  url: string;
+  icon: string;
 }
 
 export interface SkillsData {
@@ -42,6 +49,7 @@ export interface ResumeData {
   address: string;
   resumeLink: string;
   imagebaseurl: string;
+  socialLinks?: SocialLink[];
   education: Education;
   experience: Experience[];
   skills?: SkillsData;
@@ -54,6 +62,7 @@ export interface Project {
   github?: string;
   techStack?: string[];
   category?: 'fullstack' | 'ml' | 'competitive' | 'tool' | 'other';
+  caseStudySlug?: string;
   description: string[];
 }
 
@@ -61,6 +70,7 @@ export interface Activity {
   name: string;
   url?: string;
   github?: string;
+  caseStudySlug?: string;
   description: string[];
 }
 

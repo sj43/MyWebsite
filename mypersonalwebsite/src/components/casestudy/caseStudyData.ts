@@ -17,7 +17,7 @@ export interface CaseStudyItem {
   outcomes: string[];
 }
 
-const caseStudies: CaseStudyItem[] = [
+const caseStudies = [
   {
     slug: 'microsoft',
     name: 'Microsoft — Release Automation & AI Integration',
@@ -321,6 +321,6 @@ const caseStudies: CaseStudyItem[] = [
       '🔍 Full-text search across internal docs via ElasticSearch + CI indexing',
     ]
   }
-];
+ ] satisfies CaseStudyItem[];
 
 export default caseStudies;

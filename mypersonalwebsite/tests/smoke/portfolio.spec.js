@@ -17,4 +17,16 @@ test.describe('portfolio production smoke', () => {
     await expect(page.getByRole('heading', { name: 'Overview' })).toBeVisible();
     await expect(page.getByRole('link', { name: /Back to Projects/i })).toBeVisible();
   });
+
+  test('back to projects restores revealed experience content', async ({ page }) => {
+    await page.goto('./');
+    await page.getByRole('button', { name: /Case Study/ }).first().click();
+    await page.getByRole('link', { name: /Back to Projects/i }).click();
+
+    await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeInViewport();
+    await expect(page.locator('#resume .reveal').first()).toHaveCSS('opacity', '1');
+
+    const hiddenExperienceCards = await page.locator('#resume .reveal:not(.reveal-visible)').count();
+    expect(hiddenExperienceCards).toBe(0);
+  });
 });

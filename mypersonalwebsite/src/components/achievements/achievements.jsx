@@ -1,31 +1,25 @@
 import React from 'react';
+import SectionShell from '../common/SectionShell';
+import TimelineItem from '../common/TimelineItem';
 
 export default function Achievements({ resumeData }) {
-    if (!resumeData.achievements || resumeData.achievements.length === 0) return null;
+  if (!resumeData.achievements || resumeData.achievements.length === 0) return null;
 
-    return (
-      <section id="achievements">
-        <div className="row">
-          <div className="three columns header-col">
-            <h2><span>Achievements</span></h2>
-          </div>
-          <div className="nine columns main-col">
-            <div className="timeline-wrapper">
-              {resumeData.achievements.map((item, i) => (
-                <div key={i} className="timeline-item">
-                  <div className="timeline-dot" />
-                  <div className="achievement-item">
-                    <i className={item.icon + " achievement-icon"} aria-hidden="true" />
-                    <div className="achievement-content">
-                      <h5>{item.title}</h5>
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+  return (
+    <SectionShell id="achievements" title="Achievements">
+      <div className="timeline-wrapper">
+        {resumeData.achievements.map((item, i) => (
+          <TimelineItem key={item.title || i}>
+            <div className="achievement-item">
+              <i className={item.icon + ' achievement-icon'} aria-hidden="true" />
+              <div className="achievement-content">
+                <h5>{item.title}</h5>
+                <p>{item.description}</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-    );
+          </TimelineItem>
+        ))}
+      </div>
+    </SectionShell>
+  );
 }

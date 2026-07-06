@@ -32,38 +32,38 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
-const renderApp = () => render(<MemoryRouter><App /></MemoryRouter>);
+const renderApp = (initialEntries = ['/']) => render(
+  <MemoryRouter initialEntries={initialEntries}>
+    <App />
+  </MemoryRouter>
+);
 
 describe('App', () => {
   test('renders without crashing', () => {
     renderApp();
   });
 
-  test('renders About section', () => {
+  test('renders main page sections', () => {
     renderApp();
-    expect(screen.getAllByText(/About/i).length).toBeGreaterThan(0);
-  });
 
-  test('renders Resume/Work Experience section', () => {
-    renderApp();
-    // Use getAllByText to avoid throwing when multiple elements match
-    const workMatches = screen.getAllByText(/Work/i);
-    expect(workMatches.length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { name: 'Seung Hun Jang' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Experience' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Featured Projects' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Achievements' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Education' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Get In Touch' })).toBeInTheDocument();
   });
 
   test('renders navigation', () => {
     renderApp();
-    expect(screen.getAllByText(/About/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/Experience/i).length).toBeGreaterThan(0);
+    expect(screen.getByRole('navigation', { name: 'Page sections' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Experience' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Projects' })).toBeInTheDocument();
   });
 
-  test('renders Skills section', () => {
-    renderApp();
-    expect(screen.getAllByText(/Skills/i).length).toBeGreaterThan(0);
-  });
-
-  test('renders Contact section', () => {
-    renderApp();
-    expect(screen.getAllByText(/Get In Touch/i).length).toBeGreaterThan(0);
+  test('renders case study route', () => {
+    renderApp(['/project/microsoft']);
+    expect(screen.getByRole('heading', { name: /Microsoft.*Release Automation/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Back to Projects/i })).toBeInTheDocument();
   });
 });

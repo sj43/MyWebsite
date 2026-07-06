@@ -1,27 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-import caseStudies from '../casestudy/caseStudyData';
-
-// Derive slug map from caseStudyData — maps project name variants to slugs
-const SLUG_MAP = Object.fromEntries(
-  caseStudies.flatMap(cs => {
-    const entries = [[cs.name, cs.slug]];
-    // Add short name variants for matching against projectData names
-    const shortName = cs.name.split(' — ')[0].split(' · ')[0].trim();
-    if (shortName !== cs.name) entries.push([shortName, cs.slug]);
-    return entries;
-  })
-);
-
-// Look up slug by exact name or by checking if the slug appears in the project name
-function getSlug(projectName) {
-  if (SLUG_MAP[projectName]) return SLUG_MAP[projectName];
-  const match = caseStudies.find(cs =>
-    projectName.toLowerCase().includes(cs.slug)
-  );
-  return match ? match.slug : null;
-}
+import { getCaseStudySlugForProject } from '../casestudy/caseStudyLinks';
+import CaseStudyButton from '../common/CaseStudyButton';
+import SkillTags from '../common/SkillTags';
 
 const FILTERS = [
   { key: 'all', label: 'All' },
@@ -33,7 +13,6 @@ const FILTERS = [
 
 export default function Portfolio({ projectData }) {
   const [activeFilter, setActiveFilter] = useState('all');
-  const navigate = useNavigate();
 
   const allProjects = [
     ...(projectData.projects || []),
@@ -63,8 +42,11 @@ export default function Portfolio({ projectData }) {
           </div>
 
           <div className="portfolio-grid">
-            {filtered.map((project, i) => (
-              <div key={i} className={`portfolio-card cat-${project.category || 'all'}`}>
+            {filtered.map((project, i) => {
+              const caseStudySlug = getCaseStudySlugForProject(project);
+
+              return (
+              <div key={project.name || i} className={`portfolio-card cat-${project.category || 'all'}`}>
                 <div className="portfolio-card-header">
                   <h3 className="portfolio-card-name">{project.name}</h3>
                   <div className="portfolio-card-links">
@@ -87,26 +69,21 @@ export default function Portfolio({ projectData }) {
                   </p>
                 )}
 
-                {project.techStack && project.techStack.length > 0 && (
-                  <div className="portfolio-card-tech">
-                    {project.techStack.slice(0, 6).map((tech, j) => (
-                      <span key={j} className="portfolio-tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                )}
+                <SkillTags
+                  items={project.techStack}
+                  limit={6}
+                  className="portfolio-card-tech"
+                  tagClassName="portfolio-tech-tag"
+                />
 
-                {getSlug(project.name) && (
+                {caseStudySlug && (
                   <div className="portfolio-card-casestudy">
-                    <button
-                      className="cs-card-btn"
-                      onClick={() => navigate(`/project/${getSlug(project.name)}`)}
-                    >
-                      Case Study →
-                    </button>
+                    <CaseStudyButton slug={caseStudySlug} />
                   </div>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

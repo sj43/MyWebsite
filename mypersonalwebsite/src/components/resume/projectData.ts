@@ -1,12 +1,13 @@
 import type { ProjectData } from '../../types';
 
-const projectData: ProjectData = {
+const projectData = {
         "projects": [{
                 "name": "ME.NU",
                 "url": "",
                 "github": "https://github.com/sj43/me.nu",
                 "techStack": ["Python", "Flask", "MongoDB", "Docker", "Redis", "AWS Elastic Beanstalk", "AWS ECR", "AWS S3", "AWS CodePipeline", "JWT"],
                 "category": "fullstack",
+                "caseStudySlug": "menu",
                 "description": [
                         "Ingredient-based personal and customized dish recommendation service across restaurants in Houston",
                         "Built RESTful-API Backend Service with Python Flask and MongoDB database",
@@ -21,6 +22,7 @@ const projectData: ProjectData = {
                 "github": "https://github.com/tGoh98/rooms",
                 "techStack": ["React", "Node.js", "Flask", "PostgreSQL", "GCP", "AWS RDS"],
                 "category": "fullstack",
+                "caseStudySlug": "roomy",
                 "description": [
                         "PennApps XXI Top 10 — A virtual hangout space connecting friends, family, and classmates with shared music, Zoom, and interactive rooms",
                         "Built with React/Node.js frontend and Flask + PostgreSQL backend, hosted on GCP App Engine and AWS RDS",
@@ -32,6 +34,7 @@ const projectData: ProjectData = {
                 "github": "",
                 "techStack": ["Python", "NLTK", "Data Analysis", "React", "JavaScript"],
                 "category": "ml",
+                "caseStudySlug": "hackathons",
                 "description": [
                         "Rice Datathon 2020 | Winner | \"Course Evaluation Analytics\" - a pipeline that empowers the user to play with, analyze, and draw conclusions from over half a million course evaluations, so that the student can learn about courses, the instructor can learn about students, and the registrar can learn about professors.",
                         "HackRice 9 Hackathon 2019 | Winner | \"Me.nu\" - web app that recommends users what to order at restaurants based on their preferences and highly rated items on other platforms",
@@ -45,6 +48,7 @@ const projectData: ProjectData = {
                 "github": "https://github.com/sj43/py-jmb",
                 "techStack": ["Python"],
                 "category": "tool",
+                "caseStudySlug": "py-jmb",
                 "description": [
                         "A project to translate JMB (a book on algorithmic problem-solving strategies) written using C++ into Python 2.7, following pep8 standards"
                 ]
@@ -54,11 +58,12 @@ const projectData: ProjectData = {
                 "github": "",
                 "techStack": ["C++", "Algorithms", "Data Structures"],
                 "category": "competitive",
+                "caseStudySlug": "icpc",
                 "description": [
                         "Represented Rice University in 2018 USA South Central Regional ICPC",
                         "Top 20 contestant in Two Sigma ICPC Challenge"
                 ]
         }
         ]
-}
+} satisfies ProjectData;
 export default projectData

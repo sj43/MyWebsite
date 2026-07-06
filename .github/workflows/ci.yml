@@ -35,6 +35,10 @@ jobs:
         working-directory: mypersonalwebsite
         run: npm test
 
+      - name: Typecheck
+        working-directory: mypersonalwebsite
+        run: npm run typecheck
+
       - name: Build
         working-directory: mypersonalwebsite
         run: npm run build

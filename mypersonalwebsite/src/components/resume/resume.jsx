@@ -1,11 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import caseStudies from '../casestudy/caseStudyData';
-
-// Derive org→slug map from caseStudyData (e.g. "Microsoft — Release..." → "microsoft")
-const EXPERIENCE_CASE_STUDIES = Object.fromEntries(
-  caseStudies.map(cs => [cs.name.split(' — ')[0].trim(), cs.slug])
-);
+import { getCaseStudySlugForExperience } from '../casestudy/caseStudyLinks';
+import CaseStudyButton from '../common/CaseStudyButton';
+import SectionShell from '../common/SectionShell';
+import SkillTags from '../common/SkillTags';
+import TimelineItem from '../common/TimelineItem';
 
 // Parse "[C# | .NET | Azure]" or "[Go | JS] & [AWS | Jenkins]" into an array of skill strings
 function parseTechLine(line) {
@@ -17,18 +15,11 @@ function parseTechLine(line) {
 }
 
 export default function Resume({ resumeData }) {
-  const navigate = useNavigate();
-
   return (
-      <React.Fragment>
-        <section id="resume">
-          <div className="row work">
-            <div className="three columns header-col">
-              <h2><span>Experience</span></h2>
-            </div>
-            <div className="nine columns main-col">
+      <SectionShell id="resume" title="Experience" rowClassName="work">
               <div className="timeline-wrapper">
                 {resumeData.experience && resumeData.experience.map((item, i) => {
+                  const caseStudySlug = getCaseStudySlugForExperience(item);
                   // Separate description bullets from the tech line
                   const bullets = [];
                   let techSkills = null;
@@ -44,8 +35,7 @@ export default function Resume({ resumeData }) {
                   }
 
                   return (
-                    <div key={i} className="timeline-item reveal">
-                      <div className="timeline-dot" />
+                    <TimelineItem key={`${item.organization}-${item.date || i}`} reveal>
                       <div className="timeline-card">
                         <div className="timeline-header">
                           <h3 className="timeline-org">{item.organization}</h3>
@@ -59,31 +49,17 @@ export default function Resume({ resumeData }) {
                             ))}
                           </ul>
                         )}
-                        {techSkills && (
-                          <div className="timeline-tech">
-                            {techSkills.map((skill, j) => (
-                              <span key={j} className="skill-badge">{skill}</span>
-                            ))}
-                          </div>
-                        )}
-                        {EXPERIENCE_CASE_STUDIES[item.organization] && (
-                          <div className="portfolio-card-casestudy" style={{ marginTop: '14px' }}>
-                            <button
-                              className="cs-card-btn"
-                              onClick={() => navigate(`/project/${EXPERIENCE_CASE_STUDIES[item.organization]}`)}
-                            >
-                              Case Study →
-                            </button>
+                        <SkillTags items={techSkills} />
+                        {caseStudySlug && (
+                          <div className="portfolio-card-casestudy timeline-case-study-action">
+                            <CaseStudyButton slug={caseStudySlug} />
                           </div>
                         )}
                       </div>
-                    </div>
+                    </TimelineItem>
                   );
                 })}
               </div>
-            </div>
-          </div>
-        </section>
-      </React.Fragment>
+      </SectionShell>
     );
 }
