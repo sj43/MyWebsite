@@ -5,6 +5,15 @@ export default function useRouteScrollReveal(location) {
     const revealEls = document.querySelectorAll('.reveal');
     if (!revealEls.length) return undefined;
 
+    const revealIfAlreadyPassed = el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('reveal-visible');
+        return true;
+      }
+      return false;
+    };
+
     if (!window.IntersectionObserver) {
       revealEls.forEach(el => el.classList.add('reveal-visible'));
       return undefined;
@@ -20,7 +29,11 @@ export default function useRouteScrollReveal(location) {
       { threshold: 0.15 }
     );
 
-    revealEls.forEach(el => observer.observe(el));
+    revealEls.forEach(el => {
+      if (!revealIfAlreadyPassed(el)) {
+        observer.observe(el);
+      }
+    });
     return () => observer.disconnect();
   }, [location.pathname, location.hash]);
 }

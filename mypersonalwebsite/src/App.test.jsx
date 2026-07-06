@@ -47,6 +47,7 @@ describe('App', () => {
     renderApp();
 
     expect(screen.getByRole('heading', { name: 'Seung Hun Jang' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Driving agentic AI development/i })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Experience' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Featured Projects' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Achievements' })).toBeInTheDocument();
@@ -63,7 +64,7 @@ describe('App', () => {
 
   test('renders case study route', () => {
     renderApp(['/project/microsoft']);
-    expect(screen.getByRole('heading', { name: /Microsoft.*Release Automation/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /Microsoft.*Agentic AI/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Back to Projects/i })).toBeInTheDocument();
   });
 });

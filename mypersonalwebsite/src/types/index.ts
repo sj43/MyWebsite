@@ -41,10 +41,24 @@ export interface SkillsData {
   tools: string[];
 }
 
+export interface InitiativeMetric {
+  value: string;
+  label: string;
+}
+
+export interface FeaturedInitiative {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+  metrics?: InitiativeMetric[];
+}
+
 export interface ResumeData {
   name: string;
   role: string;
   bio?: string;
+  featuredInitiative?: FeaturedInitiative;
   email: string;
   address: string;
   resumeLink: string;

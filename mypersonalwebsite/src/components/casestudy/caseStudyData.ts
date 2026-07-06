@@ -20,31 +20,32 @@ export interface CaseStudyItem {
 const caseStudies = [
   {
     slug: 'microsoft',
-    name: 'Microsoft — Release Automation & AI Integration',
-    tagline: 'From distributed release orchestration to AI-powered engineering — 3+ years building Windows update infrastructure',
+    name: 'Microsoft — Agentic AI for Release Engineering',
+    tagline: 'Driving agentic AI adoption for Windows release engineering through MCP tools, secure agent access, Azure AI Search, and Copilot workflows',
     category: 'Full-Time · SWE → SWE II',
     techStack: ['C#', '.NET', 'Azure Service Fabric', 'Azure AD', 'Azure AI Search', 'MCP', 'GitHub Copilot', 'TypeScript', 'Azure DevOps'],
     overview:
-      'Over 3+ years at Microsoft, I\'ve worked across two phases: first building the distributed platform that orchestrates touchless Windows update releases at scale, then expanding its intelligence layer — exposing the system to AI agents via MCP, securing AI access with Azure AD, and integrating Copilot into developer workflows.',
+      'At Microsoft, I am driving the agentic AI initiative for Windows release engineering: building MCP tools, securing agent access, grounding AI in real engineering knowledge, and helping teammates adopt AI-assisted development workflows safely. That work builds on my earlier release automation platform experience, where I helped maintain the distributed system that orchestrates touchless Windows update releases at scale.',
     sections: [
       {
-        heading: '📦 Phase 1 (SWE · Aug 2021–Sep 2023): Release Automation Platform',
+        heading: '🤖 Agentic AI Initiative (SWE II · Sep 2023–Present)',
+        diagramKey: 'microsoft-ai',
+        body: [
+          'Drove the team\'s move from ad hoc AI experiments to a repeatable agentic development environment for release engineering workflows.',
+          'MCP server with 50+ tools: Built a Model Context Protocol server that exposes the release automation platform to AI agents. The server surfaces discoverable tools that let agents query release state, retrieve deployment context, and trigger scoped workflows.',
+          'Authentication & authorization: Designed secure AI access using Azure AD (MISE), role-based authorization, and human-in-the-loop boundaries for high-impact operations.',
+          'Azure AI Search indexing pipeline: Created an indexing pipeline that ingests and semantically indexes code/docs so Copilot and agents answer from grounded release engineering context.',
+          'Copilot workflow enablement: Set up AI-assisted onboarding and development workflows so teammates can investigate systems, generate configuration changes, and work with agents using shared guardrails.',
+        ]
+      },
+      {
+        heading: '📦 Release Automation Platform Foundation',
         diagramKey: 'microsoft-release',
         body: [
           'The platform runs on Azure Service Fabric with ~40 microservices coordinating every stage of a software release: scheduling, validation, staged rollout, monitoring, and incident response. Service Fabric\'s stateful service primitives maintain durable release state across restarts and rolling upgrades — critical for workflows that span hours or days.',
           'Automated product onboarding pipelines: Designed pipelines that eliminate manual setup for teams joining the platform. When a new product onboards, the system automatically generates pull requests, creates Azure DevOps work items, and provisions configuration — reducing hours of manual work per team to near-zero.',
           'Automated incident management: Built features that detect release anomalies and trigger structured incident response workflows, reducing mean time to acknowledgment for release-blocking issues.',
           'Release scheduling improvements: Designed enhancements that improved throughput for concurrent release pipelines and reduced bottlenecks during high-traffic release windows.',
-        ]
-      },
-      {
-        heading: '🤖 Phase 2 (SWE II · Sep 2023–Present): AI & Agent Integration',
-        diagramKey: 'microsoft-ai',
-        body: [
-          'MCP server with 50+ tools: Built a Model Context Protocol server that exposes the release automation platform to AI agents. The server surfaces 50+ discoverable tools — enabling agents to query release state, trigger workflows, and retrieve deployment context without human intermediaries.',
-          'Authentication & authorization: Designed the auth layer for secure AI agent access using Azure AD (MISE). Implemented role-based authorization so different agents and users can access only the tools and data their role permits.',
-          'Azure AI Search indexing pipeline: Created an indexing pipeline that ingests and semantically indexes the codebase, making it queryable for AI knowledge retrieval. Enables Copilot and other agents to answer questions grounded in the actual system\'s code and docs.',
-          'GitHub Copilot integration: Integrated Copilot into the automated onboarding pipelines — new teams get AI-generated code scaffolding and configuration suggestions as part of the onboarding workflow, accelerating time-to-first-release.',
         ]
       },
       {

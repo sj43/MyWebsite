@@ -15,8 +15,36 @@ function parseTechLine(line) {
 }
 
 export default function Resume({ resumeData }) {
+  const initiative = resumeData.featuredInitiative;
+
   return (
       <SectionShell id="resume" title="Experience" rowClassName="work">
+              {initiative && (
+                <div className="ai-initiative-card reveal">
+                  <div className="ai-initiative-eyebrow">{initiative.eyebrow}</div>
+                  <div className="ai-initiative-layout">
+                    <div>
+                      <h3 className="ai-initiative-title">{initiative.title}</h3>
+                      <p className="ai-initiative-summary">{initiative.summary}</p>
+                      <ul className="ai-initiative-highlights">
+                        {initiative.highlights.map(highlight => (
+                          <li key={highlight}>{highlight}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    {initiative.metrics?.length > 0 && (
+                      <div className="ai-initiative-metrics" aria-label="AI initiative metrics">
+                        {initiative.metrics.map(metric => (
+                          <div key={metric.label} className="ai-initiative-metric">
+                            <span className="ai-initiative-metric-value">{metric.value}</span>
+                            <span className="ai-initiative-metric-label">{metric.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
               <div className="timeline-wrapper">
                 {resumeData.experience && resumeData.experience.map((item, i) => {
                   const caseStudySlug = getCaseStudySlugForExperience(item);
