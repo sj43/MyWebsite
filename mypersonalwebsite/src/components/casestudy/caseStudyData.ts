@@ -113,6 +113,52 @@ const caseStudies: CaseStudyItem[] = [
     ]
   },
   {
+    slug: 'roomy',
+    name: 'Roomy',
+    tagline: 'A virtual hangout platform where friends connect through shared rooms, music, and video — Top 10 at PennApps XXI',
+    category: 'Hackathon · PennApps XXI',
+    techStack: ['React', 'Node.js', 'Flask', 'PostgreSQL', 'GCP App Engine', 'AWS RDS', 'Spotify API', 'Zoom API'],
+    url: 'https://devpost.com/software/roomy',
+    github: 'https://github.com/tGoh98/rooms',
+    overview:
+      'Roomy reimagines virtual hangouts by giving friend groups a shared space — not just a video call. Each "room" is a themed environment (gym, cafe, kitchen) where members can work out together with synced exercise videos, share a Spotify listening session, or hop on a Zoom call — all from one interface. Built in 36 hours at PennApps XXI with a team of 10, the project placed in the Top 10.',
+    sections: [
+      {
+        heading: '💡 Inspiration',
+        body: [
+          'In 2020, virtual communication had become the norm, but most tools reduced social interaction to a grid of video tiles. We wanted to recreate the feeling of being in a shared physical space — where you can drift between activities, listen to the same music, and see who\'s around.',
+          'Roomy gives groups a persistent virtual "home" with themed rooms, each offering a different shared activity.'
+        ]
+      },
+      {
+        heading: '🏗️ Architecture',
+        body: [
+          'The frontend is a React SPA using Material-UI and React Router, with Axios for API communication. Components are organized by room type: Landing, Home (gallery view of rooms), Gym, Cafe, plus auth flows for Spotify and Zoom OAuth.',
+          'The backend is a Flask REST API with a PostgreSQL database, hosted on GCP App Engine. Data models include Users, BigRooms (the top-level group), and individual room types (Gym, Cafe) — each tracking active members, Zoom meeting state, and room-specific data like workout timestamps.',
+          'The Spotify integration pulls users\' recently played tracks to generate shared genre/artist profiles. The Zoom integration uses OAuth to programmatically create and manage meetings — when the first person enters a room, a Zoom meeting auto-starts; others join the same link.'
+        ]
+      },
+      {
+        heading: '⚡ Technical Challenges',
+        body: [
+          'Live-updating state: Multiple users joining/leaving rooms in real-time required careful state synchronization between the React frontend and Flask backend. We used polling with short intervals to keep room member lists and activity status current.',
+          'Multi-API OAuth: Integrating both Spotify and Zoom OAuth flows in the same app meant managing two separate token lifecycles, redirect URIs, and permission scopes — each with their own quirks and rate limits.',
+          'Synced workouts: The Gym room needed to synchronize exercise videos across users who join at different times. We solved this by storing the workout start timestamp server-side and calculating the skip-ahead offset for late joiners.'
+        ]
+      },
+      {
+        heading: '🧑‍💻 My Role',
+        body: 'I worked on the backend API, building the Flask endpoints for room management (join/leave BigRooms, Gym, Cafe), user state tracking, and the Zoom API integration for programmatic meeting creation and OAuth token handling.'
+      }
+    ],
+    outcomes: [
+      '🏆 Top 10 at PennApps XXI (Sep 2020)',
+      'Full-stack app built in 36 hours with a team of 10',
+      'Integrated Spotify + Zoom APIs with OAuth and live-updating state',
+      'RESTful backend with PostgreSQL, deployed on GCP App Engine + AWS RDS',
+    ]
+  },
+  {
     slug: 'hackathons',
     name: 'Hackathons',
     tagline: 'Four podium finishes across Rice, Penn, and national competitions',

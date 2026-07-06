@@ -5,7 +5,7 @@ export default function ContactUs({ resumeData }) {
       <section id="contact">
         <div className="row">
           <div className="three columns header-col">
-            <h1><span>Get In Touch</span></h1>
+            <h2><span>Get In Touch</span></h2>
           </div>
           <div className="nine columns main-col">
             <div className="timeline-wrapper">
@@ -18,11 +18,11 @@ export default function ContactUs({ resumeData }) {
                   </p>
                   <div style={{display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '14px'}}>
                     <a href={`mailto:${resumeData.email}`} className="btn-inline">
-                      <i className="fa fa-envelope" style={{marginRight: '6px'}} /> Email Me
+                      <i className="fa fa-envelope" aria-hidden="true" style={{marginRight: '6px'}} /> Email Me
                     </a>
                     {resumeData.resumeLink && (
                       <a href={resumeData.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-inline">
-                        Download Resume <i className="fa fa-download" style={{marginLeft: '6px'}} />
+                        Download Resume <i className="fa fa-download" aria-hidden="true" style={{marginLeft: '6px'}} />
                       </a>
                     )}
                   </div>

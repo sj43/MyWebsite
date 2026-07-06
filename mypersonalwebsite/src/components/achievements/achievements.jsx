@@ -7,7 +7,7 @@ export default function Achievements({ resumeData }) {
       <section id="achievements">
         <div className="row">
           <div className="three columns header-col">
-            <h1><span>Achievements</span></h1>
+            <h2><span>Achievements</span></h2>
           </div>
           <div className="nine columns main-col">
             <div className="timeline-wrapper">
@@ -15,7 +15,7 @@ export default function Achievements({ resumeData }) {
                 <div key={i} className="timeline-item">
                   <div className="timeline-dot" />
                   <div className="achievement-item">
-                    <i className={item.icon + " achievement-icon"} />
+                    <i className={item.icon + " achievement-icon"} aria-hidden="true" />
                     <div className="achievement-content">
                       <h5>{item.title}</h5>
                       <p>{item.description}</p>

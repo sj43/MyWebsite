@@ -8,7 +8,6 @@ import ContactUs from './components/contactus/contactus';
 import Portfolio from './components/portfolio/portfolio';
 import Terminal from './components/terminal/terminal';
 import CaseStudy from './components/casestudy/CaseStudy';
-// import Testimonials from  './components/testimonials/testimonials';
 import Footer from './components/footer/footer';
 import resumeData from './components/resume/resumeData';
 import projectData from './components/resume/projectData';
@@ -24,7 +23,6 @@ function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
           <Achievements resumeData={resumeData}/>
           <Education resumeData={resumeData}/>
           <ContactUs resumeData={resumeData} />
-          {/* <Testimonials /> */}
           <Footer />
         </main>
       </div>
@@ -34,9 +32,9 @@ function MainPage({ theme, toggleTheme, terminalOpen, setTerminalOpen }) {
         title="Open terminal (press / or `)"
         aria-label="Open interactive terminal"
       >
-        <i className="fa fa-terminal" />
+        <i className="fa fa-terminal" aria-hidden="true" />
       </button>
-      {terminalOpen && <Terminal onClose={() => setTerminalOpen(false)} />}
+      {terminalOpen && <Terminal resumeData={resumeData} projectData={projectData} onClose={() => setTerminalOpen(false)} />}
     </div>
   );
 }
@@ -75,6 +73,22 @@ export default function App() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  // Global scroll-reveal animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-visible');
+          observer.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.15 }
+    );
+    const revealEls = document.querySelectorAll('.reveal');
+    revealEls.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');

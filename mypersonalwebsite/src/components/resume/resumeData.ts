@@ -91,6 +91,11 @@ const resumeData: ResumeData = {
     }
   ],
   "resumeLink": "https://drive.google.com/file/d/14D7ZbdZ4QoRgwBKtYUZfiswGbZyu5-6D/view?usp=sharing",
+  "socialLinks": [
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shjang956/?locale=en_US", "icon": "fa fa-linkedin" },
+    { "label": "GitHub", "url": "https://github.com/sj43", "icon": "fa fa-github" },
+    { "label": "Devpost", "url": "https://devpost.com/sj43?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav", "icon": "fa fa-book" }
+  ],
   "skills": {
     "languages": ["C#", "Python", "Go", "TypeScript", "JavaScript", "Java", "C", "C++", "SQL"],
     "frameworks": [".NET", "Azure Service Fabric", "Flask", "React", "Spring Boot", "Node.js"],
@@ -113,6 +118,11 @@ const resumeData: ResumeData = {
       "icon": "fa fa-trophy",
       "title": "HackRice 8.5 — 1st Place, FinTech Track",
       "description": "First place in the financial technology track."
+    },
+    {
+      "icon": "fa fa-trophy",
+      "title": "PennApps XXI — Top 10",
+      "description": "Built Roomy, a virtual hangout platform with shared music and interactive rooms."
     },
     {
       "icon": "fa fa-code",

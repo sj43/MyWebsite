@@ -1,59 +1,78 @@
-import React, { useState, useEffect, useRef } from 'react';
-import resumeData from '../resume/resumeData';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
-const COMMANDS = {
-  help: () => [
-    '  Available commands:',
-    '  about       — Learn about Seung Hun',
-    '  skills      — View tech stack',
-    '  experience  — Work history',
-    '  projects    — Featured projects',
-    '  contact     — Get in touch',
-    '  clear       — Clear terminal',
-    '  exit        — Close terminal',
-  ],
-  about: () => [
-    `  Name:     ${resumeData.name}`,
-    `  Role:     ${resumeData.role}`,
-    `  Email:    ${resumeData.email}`,
-    `  Location: ${resumeData.address}`,
-    resumeData.bio ? `  Bio:      ${resumeData.bio}` : '',
-  ].filter(Boolean),
-  skills: () => {
-    const s = resumeData.skills;
-    if (!s) return ['  No skills data found.'];
-    return [
-      `  Languages:   ${(s.languages || []).join(', ')}`,
-      `  Frameworks:  ${(s.frameworks || []).join(', ')}`,
-      `  Cloud/AWS:   ${(s.cloud || []).join(', ')}`,
-      `  Databases:   ${(s.databases || []).join(', ')}`,
-      `  Tools:       ${(s.tools || []).join(', ')}`,
-    ];
-  },
-  experience: () =>
-    (resumeData.experience || []).flatMap(ex => [
-      `  ◉ ${ex.organization} — ${ex.title || ex.position || ''}`,
-      `    ${ex.years || ex.date || ''}`,
-      '',
-    ]),
-  contact: () => [
-    `  Email:    ${resumeData.email}`,
-    `  LinkedIn: https://www.linkedin.com/in/shjang956/`,
-    `  GitHub:   https://github.com/sj43`,
-  ],
-  projects: () => ['  Scroll to the Projects section to explore — or type "experience" for work history.'],
-  clear: () => null, // special case handled below
-  exit: () => null,  // special case handled below
-};
+function buildCommands(data, projects) {
+  const allProjects = [
+    ...(projects?.projects || []),
+    ...(projects?.activities || []),
+  ];
 
-const WELCOME = [
-  `  Welcome to ${resumeData.name}'s terminal`,
-  '  Type "help" to see available commands.',
-  '',
-];
+  return {
+    help: () => [
+      '  Available commands:',
+      '  about       — Learn about Seung Hun',
+      '  skills      — View tech stack',
+      '  experience  — Work history',
+      '  projects    — Featured projects',
+      '  contact     — Get in touch',
+      '  clear       — Clear terminal',
+      '  exit        — Close terminal',
+    ],
+    about: () => [
+      `  Name:     ${data.name}`,
+      `  Role:     ${data.role}`,
+      `  Email:    ${data.email}`,
+      `  Location: ${data.address}`,
+      data.bio ? `  Bio:      ${data.bio}` : '',
+    ].filter(Boolean),
+    skills: () => {
+      const s = data.skills;
+      if (!s) return ['  No skills data found.'];
+      return [
+        `  Languages:   ${(s.languages || []).join(', ')}`,
+        `  Frameworks:  ${(s.frameworks || []).join(', ')}`,
+        `  Cloud/AWS:   ${(s.cloud || []).join(', ')}`,
+        `  Databases:   ${(s.databases || []).join(', ')}`,
+        `  Tools:       ${(s.tools || []).join(', ')}`,
+      ];
+    },
+    experience: () =>
+      (data.experience || []).flatMap(ex => [
+        `  ◉ ${ex.organization} — ${ex.title || ex.position || ''}`,
+        `    ${ex.years || ex.date || ''}`,
+        '',
+      ]),
+    contact: () => {
+      const lines = [`  Email:    ${data.email}`];
+      if (data.socialLinks) {
+        data.socialLinks.forEach(link => {
+          lines.push(`  ${link.label}:${' '.repeat(Math.max(1, 10 - link.label.length))}${link.url}`);
+        });
+      }
+      return lines;
+    },
+    projects: () => {
+      if (!allProjects.length) return ['  No projects found.'];
+      return allProjects.flatMap(p => [
+        `  ◉ ${p.name}`,
+        `    ${(p.description || [])[0] || ''}`,
+        p.techStack ? `    [${p.techStack.slice(0, 5).join(', ')}]` : '',
+        '',
+      ].filter(Boolean));
+    },
+    clear: () => null,
+    exit: () => null,
+  };
+}
 
-export default function Terminal({ onClose }) {
-  const [history, setHistory] = useState(WELCOME.map(line => ({ type: 'output', text: line })));
+export default function Terminal({ resumeData, projectData, onClose }) {
+  const commands = useMemo(() => buildCommands(resumeData, projectData), [resumeData, projectData]);
+  const welcomeLines = useMemo(() => [
+    `  Welcome to ${resumeData.name}'s terminal`,
+    '  Type "help" to see available commands.',
+    '',
+  ], [resumeData.name]);
+
+  const [history, setHistory] = useState(() => welcomeLines.map(line => ({ type: 'output', text: line })));
   const [input, setInput] = useState('');
   const [cmdHistory, setCmdHistory] = useState([]);
   const [historyIdx, setHistoryIdx] = useState(-1);
@@ -77,7 +96,7 @@ export default function Terminal({ onClose }) {
       return;
     }
     if (trimmed === 'clear') {
-      setHistory(WELCOME.map(line => ({ type: 'output', text: line })));
+      setHistory(welcomeLines.map(line => ({ type: 'output', text: line })));
       setInput('');
       return;
     }
@@ -87,7 +106,7 @@ export default function Terminal({ onClose }) {
       return;
     }
 
-    const handler = COMMANDS[trimmed];
+    const handler = commands[trimmed];
     if (handler) {
       const result = handler();
       setHistory([...newHistory, ...result.map(text => ({ type: 'output', text }))]);
@@ -122,17 +141,17 @@ export default function Terminal({ onClose }) {
   };
 
   return (
-    <div className="terminal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="terminal-overlay" role="dialog" aria-modal="true" aria-label="Interactive terminal" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="terminal-window">
         <div className="terminal-titlebar">
           <div className="terminal-dots">
-            <span className="dot dot-red" onClick={onClose} />
-            <span className="dot dot-yellow" />
-            <span className="dot dot-green" />
+            <button className="dot dot-red" onClick={onClose} aria-label="Close terminal" />
+            <span className="dot dot-yellow" aria-hidden="true" />
+            <span className="dot dot-green" aria-hidden="true" />
           </div>
           <span className="terminal-title">TERMINAL</span>
         </div>
-        <div className="terminal-body">
+        <div className="terminal-body" onClick={() => inputRef.current?.focus()}>
           {history.map((line, i) => (
             <div key={i} className={`terminal-line terminal-${line.type}`}>
               {line.text}
@@ -148,6 +167,8 @@ export default function Terminal({ onClose }) {
               onKeyDown={handleKeyDown}
               spellCheck={false}
               autoComplete="off"
+              autoFocus
+              aria-label="Terminal command input"
             />
           </div>
           <div ref={bottomRef} />

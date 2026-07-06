@@ -16,7 +16,7 @@ export default function Skills({ resumeData }) {
       <section id="skills">
         <div className="row skill">
           <div className="three columns header-col">
-            <h1><span>Skills</span></h1>
+            <h2><span>Skills</span></h2>
           </div>
           <div className="nine columns main-col">
             {categories.map((cat, i) => (

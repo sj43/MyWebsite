@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import caseStudies from '../casestudy/caseStudyData';
 
-const EXPERIENCE_CASE_STUDIES = {
-  'Microsoft': 'microsoft',
-  'Expedia Group': 'expedia',
-};
+// Derive org→slug map from caseStudyData (e.g. "Microsoft — Release..." → "microsoft")
+const EXPERIENCE_CASE_STUDIES = Object.fromEntries(
+  caseStudies.map(cs => [cs.name.split(' — ')[0].trim(), cs.slug])
+);
 
 // Parse "[C# | .NET | Azure]" or "[Go | JS] & [AWS | Jenkins]" into an array of skill strings
 function parseTechLine(line) {
@@ -17,27 +18,13 @@ function parseTechLine(line) {
 
 export default function Resume({ resumeData }) {
   const navigate = useNavigate();
-  useEffect(() => {
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('reveal-visible');
-          observer.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.15 }
-    );
-    revealEls.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
 
   return (
       <React.Fragment>
         <section id="resume">
           <div className="row work">
             <div className="three columns header-col">
-              <h1><span>Experience</span></h1>
+              <h2><span>Experience</span></h2>
             </div>
             <div className="nine columns main-col">
               <div className="timeline-wrapper">

@@ -51,6 +51,13 @@ export default function Header({ resumeData, theme, toggleTheme }) {
     <aside className="sidebar-col">
       {/* Profile */}
       <div className="sidebar-top">
+        <img
+          src={`${import.meta.env.BASE_URL}images/profilepic.jpeg`}
+          className="sidebar-profile-pic"
+          alt="Seung Hun Jang"
+          width="80"
+          height="80"
+        />
         <h1 className="sidebar-name">{resumeData.name}</h1>
         <p className="sidebar-bio">{resumeData.bio}</p>
       </div>
@@ -73,21 +80,13 @@ export default function Header({ resumeData, theme, toggleTheme }) {
       {/* Bottom: socials + theme toggle */}
       <div className="sidebar-bottom">
         <ul className="sidebar-social">
-          <li>
-            <a href="https://www.linkedin.com/in/shjang956/?locale=en_US" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <i className="fa fa-linkedin" />
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/sj43" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <i className="fa fa-github" />
-            </a>
-          </li>
-          <li>
-            <a href="https://devpost.com/sj43?ref_content=user-portfolio&ref_feature=portfolio&ref_medium=global-nav" target="_blank" rel="noopener noreferrer" aria-label="Devpost">
-              <i className="fa fa-book" />
-            </a>
-          </li>
+          {resumeData.socialLinks && resumeData.socialLinks.map(link => (
+            <li key={link.label}>
+              <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label}>
+                <i className={link.icon} aria-hidden="true" />
+              </a>
+            </li>
+          ))}
         </ul>
         <button
           className="theme-toggle sidebar-theme-toggle"
@@ -95,7 +94,7 @@ export default function Header({ resumeData, theme, toggleTheme }) {
           aria-label="Toggle theme"
           title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         >
-          <i className={theme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'} />
+          <i className={theme === 'dark' ? 'fa fa-sun-o' : 'fa fa-moon-o'} aria-hidden="true" />
         </button>
       </div>
     </aside>

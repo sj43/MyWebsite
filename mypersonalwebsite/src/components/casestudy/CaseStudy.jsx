@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import caseStudies from './caseStudyData';
 import Diagram from './Diagram';
 
@@ -16,7 +16,7 @@ export default function CaseStudy({ theme, toggleTheme }) {
     return (
       <div className="casestudy-not-found">
         <h2>Project not found</h2>
-        <button className="cs-back-btn" onClick={() => navigate('/')}>← Back to Portfolio</button>
+        <Link to="/" className="cs-back-btn">← Back to Portfolio</Link>
       </div>
     );
   }
@@ -25,9 +25,9 @@ export default function CaseStudy({ theme, toggleTheme }) {
     <div className="casestudy-page">
       {/* Nav bar */}
       <nav className="cs-nav">
-        <button className="cs-back-btn" onClick={() => navigate('/#portfolio')}>
+        <Link to="/#portfolio" className="cs-back-btn">
           ← Back to Projects
-        </button>
+        </Link>
         <button
           className="theme-toggle cs-theme-toggle"
           onClick={toggleTheme}
@@ -51,12 +51,12 @@ export default function CaseStudy({ theme, toggleTheme }) {
         <div className="cs-hero-links">
           {cs.url && (
             <a href={cs.url} target="_blank" rel="noopener noreferrer" className="cs-link-btn cs-link-primary">
-              <i className="fa fa-external-link" /> Live Demo
+              <i className="fa fa-external-link" aria-hidden="true" /> Live Demo
             </a>
           )}
           {cs.github && (
             <a href={cs.github} target="_blank" rel="noopener noreferrer" className="cs-link-btn cs-link-secondary">
-              <i className="fa fa-github" /> GitHub
+              <i className="fa fa-github" aria-hidden="true" /> GitHub
             </a>
           )}
         </div>
@@ -93,21 +93,21 @@ export default function CaseStudy({ theme, toggleTheme }) {
 
         {/* Navigation between case studies */}
         <div className="cs-nav-footer">
-          <button className="cs-back-btn cs-back-btn-large" onClick={() => navigate('/#portfolio')}>
+          <Link to="/#portfolio" className="cs-back-btn cs-back-btn-large">
             ← View All Projects
-          </button>
+          </Link>
           <div className="cs-other-studies">
             {caseStudies
               .filter(c => c.slug !== slug)
               .slice(0, 2)
               .map(c => (
-                <button
+                <Link
                   key={c.slug}
                   className="cs-other-btn"
-                  onClick={() => navigate(`/project/${c.slug}`)}
+                  to={`/project/${c.slug}`}
                 >
                   {c.name} →
-                </button>
+                </Link>
               ))}
           </div>
         </div>

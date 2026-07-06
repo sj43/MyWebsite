@@ -3,13 +3,25 @@ import { useNavigate } from 'react-router-dom';
 
 import caseStudies from '../casestudy/caseStudyData';
 
-const SLUG_MAP = {
-  'ME.NU': 'menu',
-  'Hackathons': 'hackathons',
-  'ICPC': 'icpc',
-  'International Collegiate Programming Competition (ICPC)': 'icpc',
-  'Py-JMB': 'py-jmb',
-};
+// Derive slug map from caseStudyData — maps project name variants to slugs
+const SLUG_MAP = Object.fromEntries(
+  caseStudies.flatMap(cs => {
+    const entries = [[cs.name, cs.slug]];
+    // Add short name variants for matching against projectData names
+    const shortName = cs.name.split(' — ')[0].split(' · ')[0].trim();
+    if (shortName !== cs.name) entries.push([shortName, cs.slug]);
+    return entries;
+  })
+);
+
+// Look up slug by exact name or by checking if the slug appears in the project name
+function getSlug(projectName) {
+  if (SLUG_MAP[projectName]) return SLUG_MAP[projectName];
+  const match = caseStudies.find(cs =>
+    projectName.toLowerCase().includes(cs.slug)
+  );
+  return match ? match.slug : null;
+}
 
 const FILTERS = [
   { key: 'all', label: 'All' },
@@ -36,7 +48,7 @@ export default function Portfolio({ projectData }) {
     <section id="portfolio">
       <div className="row">
         <div className="twelve columns collapsed">
-          <h1>Featured Projects</h1>
+          <h2>Featured Projects</h2>
 
           <div className="portfolio-filter-bar">
             {FILTERS.map(f => (
@@ -52,18 +64,18 @@ export default function Portfolio({ projectData }) {
 
           <div className="portfolio-grid">
             {filtered.map((project, i) => (
-              <div key={i} className="portfolio-card">
+              <div key={i} className={`portfolio-card cat-${project.category || 'all'}`}>
                 <div className="portfolio-card-header">
                   <h3 className="portfolio-card-name">{project.name}</h3>
                   <div className="portfolio-card-links">
                     {project.url && (
-                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="card-link" title="Live Demo">
-                        <i className="fa fa-external-link" />
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="card-link" aria-label={`Live demo of ${project.name}`}>
+                        <i className="fa fa-external-link" aria-hidden="true" />
                       </a>
                     )}
                     {project.github && (
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="card-link" title="GitHub">
-                        <i className="fa fa-github" />
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="card-link" aria-label={`GitHub repository for ${project.name}`}>
+                        <i className="fa fa-github" aria-hidden="true" />
                       </a>
                     )}
                   </div>
@@ -83,11 +95,11 @@ export default function Portfolio({ projectData }) {
                   </div>
                 )}
 
-                {SLUG_MAP[project.name] && (
+                {getSlug(project.name) && (
                   <div className="portfolio-card-casestudy">
                     <button
                       className="cs-card-btn"
-                      onClick={() => navigate(`/project/${SLUG_MAP[project.name]}`)}
+                      onClick={() => navigate(`/project/${getSlug(project.name)}`)}
                     >
                       Case Study →
                     </button>

@@ -16,6 +16,17 @@ const projectData: ProjectData = {
                         "[Python] & [Flask | Docker | MongoDB | Redis | AWS Elastic Beanstalk, ECR, S3, CodePipeline | JWT]"
                 ]
         }, {
+                "name": "Roomy",
+                "url": "https://devpost.com/software/roomy",
+                "github": "https://github.com/tGoh98/rooms",
+                "techStack": ["React", "Node.js", "Flask", "PostgreSQL", "GCP", "AWS RDS"],
+                "category": "fullstack",
+                "description": [
+                        "PennApps XXI Top 10 — A virtual hangout space connecting friends, family, and classmates with shared music, Zoom, and interactive rooms",
+                        "Built with React/Node.js frontend and Flask + PostgreSQL backend, hosted on GCP App Engine and AWS RDS",
+                        "Integrated Spotify and Zoom APIs with live-updating web pages for real-time collaboration"
+                ]
+        }, {
                 "name": "Hackathons",
                 "url": "",
                 "github": "",
@@ -25,7 +36,8 @@ const projectData: ProjectData = {
                         "Rice Datathon 2020 | Winner | \"Course Evaluation Analytics\" - a pipeline that empowers the user to play with, analyze, and draw conclusions from over half a million course evaluations, so that the student can learn about courses, the instructor can learn about students, and the registrar can learn about professors.",
                         "HackRice 9 Hackathon 2019 | Winner | \"Me.nu\" - web app that recommends users what to order at restaurants based on their preferences and highly rated items on other platforms",
                         "HackRice 8.5 Hackathon 2018 | 1st place in Fintech Track | Cryptocurrency Trading Management Program",
-                        "PennApps XX Hackathon 2019 | \"Aware\" - Inter-Car Communication Application"
+                        "PennApps XX Hackathon 2019 | \"Aware\" - Inter-Car Communication Application",
+                        "PennApps XXI Hackathon 2020 | Top 10 | \"Roomy\" - virtual hangout space with shared music, Zoom, and interactive rooms"
                 ]
         }, {
                 "name": "Py-JMB",

@@ -5,7 +5,7 @@ export default function Education({ resumeData }) {
     <section id="education">
       <div className="row education">
         <div className="three columns header-col">
-          <h1><span>Education</span></h1>
+          <h2><span>Education</span></h2>
         </div>
         <div className="nine columns main-col">
           <div className="timeline-wrapper">

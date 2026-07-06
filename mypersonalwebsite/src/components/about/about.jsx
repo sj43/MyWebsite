@@ -4,7 +4,7 @@ export default function About({ resumeData }) {
       <section id="about">
         <div className="row">
           <div className="three columns header-col">
-            <h1><span>About</span></h1>
+            <h2><span>About</span></h2>
           </div>
           <div className="nine columns main-col">
             <div className="timeline-wrapper">
@@ -20,7 +20,7 @@ export default function About({ resumeData }) {
                   </p>
                   {resumeData.resumeLink && (
                     <a href={resumeData.resumeLink} target="_blank" rel="noopener noreferrer" className="btn-inline" style={{marginTop: '12px'}}>
-                      Download Resume <i className="fa fa-download" style={{marginLeft: '6px'}} />
+                      Download Resume <i className="fa fa-download" aria-hidden="true" style={{marginLeft: '6px'}} />
                     </a>
                   )}
                 </div>
