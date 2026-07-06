@@ -749,14 +749,6 @@ properly.
   color: var(--color-secondary);
 }
 
-/* ===== Skills Section ===== */
-#skills {
-  background: var(--color-bg);
-  padding-top: 90px;
-  padding-bottom: 72px;
-  overflow: hidden;
-}
-#skills .header-col { padding-top: 9px; }
 .skill-category { margin-bottom: 24px; }
 .skill-category-label {
   font-size: 13px;

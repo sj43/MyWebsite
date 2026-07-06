@@ -255,18 +255,6 @@ body { background: var(--color-bg); }
   background: var(--color-border);
 }
 
-/* About section details */
-#about {
-  overflow: visible;
-}
-
-#about p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--color-text-muted);
-  margin-bottom: 16px;
-}
-
 .about-details {
   margin: 1.5rem 0;
   display: flex;
@@ -317,14 +305,6 @@ body { background: var(--color-bg); }
   border-color: rgba(255, 255, 255, 0.3);
   color: var(--color-text);
 }
-
-/* ------------------------------------------------------------------ */
-/* e. About Section (legacy selectors kept for other overrides)
-/* ------------------------------------------------------------------ */
-
-#about a, #about a:visited  { color: var(--color-secondary); }
-#about a:hover, #about a:focus { color: var(--color-accent); }
-
 
 /* ------------------------------------------------------------------ */
 /* f. Resume Section
@@ -403,36 +383,36 @@ body { background: var(--color-bg); }
 }
 
 /*----------------------------------------------*/
-/*	Skill bars
+/*  Skill bars
 /*----------------------------------------------*/
 
 .bars {
-	width: 95%;
-	float: left;
-	padding: 0;
-	text-align: left;
+  width: 95%;
+  float: left;
+  padding: 0;
+  text-align: left;
 }
 .bars .skills {
-  	margin-top: 36px;
+    margin-top: 36px;
    list-style: none;
 }
 .bars li {
    position: relative;
-  	margin-bottom: 60px;
-  	background: #ccc;
-  	height: 42px;
-  	border-radius: 3px;
+    margin-bottom: 60px;
+    background: #ccc;
+    height: 42px;
+    border-radius: 3px;
 }
 .bars li em {
-	font-family: var(--font-body);
-	font-size: 15px;
-	font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
    color: var(--color-text);
-	text-transform: uppercase;
+  text-transform: uppercase;
    letter-spacing: 2px;
-	font-weight: normal;
+  font-weight: normal;
    position: relative;
-	top: -36px;
+  top: -36px;
 }
 .bar-expand {
    position: absolute;
@@ -440,9 +420,9 @@ body { background: var(--color-bg); }
    top: 0;
    margin: 0;
    padding-right: 24px;
-  	background: #313131;
+    background: #313131;
    display: inline-block;
-  	height: 42px;
+    height: 42px;
    line-height: 42px;
    border-radius: 3px 0 0 3px;
 }
@@ -551,18 +531,18 @@ footer .social-links li {
 footer .social-links li:first-child { margin-left: 0; }
 
 #go-top {
-	position: absolute;
-	top: -24px;
+  position: absolute;
+  top: -24px;
    left: 50%;
    margin-left: -30px;
 }
 #go-top a {
-	text-decoration: none;
-	border: 0 none;
-	display: block;
-	width: 60px;
-	height: 60px;
-	background-color: #525252;
+  text-decoration: none;
+  border: 0 none;
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-color: #525252;
    -webkit-transition: all 0.2s ease-in-out;
    -moz-transition: all 0.2s ease-in-out;
    -o-transition: all 0.2s ease-in-out;
@@ -571,6 +551,6 @@ footer .social-links li:first-child { margin-left: 0; }
    color: #fff;
    font-size: 21px;
    line-height: 60px;
- 	border-radius: 100%;
+   border-radius: 100%;
 }
 #go-top a:hover { background-color: var(--color-accent); }
