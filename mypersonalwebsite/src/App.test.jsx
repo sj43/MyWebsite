@@ -4,11 +4,10 @@ import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 
 // Mock IntersectionObserver (not available in jsdom)
-const mockIntersectionObserver = vi.fn();
-mockIntersectionObserver.mockReturnValue({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
+const mockIntersectionObserver = vi.fn().mockImplementation(class {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
 });
 window.IntersectionObserver = mockIntersectionObserver;
 

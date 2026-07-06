@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My Personal Website
 
-## Available Scripts
+React + Vite portfolio site for Seung Hun Jang, deployed to GitHub Pages at https://sj43.github.io/MyWebsite/.
 
-In the project directory, you can run:
+## Requirements
 
-### `npm start`
+- Node.js 20.19 or newer in the Node 20 line
+- npm 10 or newer
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The expected Node line is recorded in `.nvmrc`, `.node-version`, and `package.json`.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Scripts
 
-### `npm test`
+Run commands from this `mypersonalwebsite/` directory.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm start           # Start Vite dev server at http://localhost:3000
+npm test            # Run Vitest once
+npm run test:watch  # Run Vitest in watch mode
+npm run build       # Build production assets into build/
+npm run preview     # Preview the production build locally
+npm run deploy      # Build and publish build/ to the gh-pages branch
+```
 
-### `npm run build`
+## Deployment
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+GitHub Pages serves the `gh-pages` branch. The source branch does not track generated `build/` output; `npm run deploy` builds locally and publishes the generated files with `gh-pages`.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Project Notes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- Routing uses `HashRouter` so deep links work on GitHub Pages.
+- Global CSS lives in `public/css/` and is loaded from `index.html`.
+- Portfolio, resume, and case study content lives in the data files under `src/components/`.
+- CI runs install, audit, tests, and a production build on pushes and pull requests.

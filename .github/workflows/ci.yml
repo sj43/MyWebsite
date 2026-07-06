@@ -18,13 +18,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version-file: mypersonalwebsite/.nvmrc
+          check-latest: true
+          cache: "npm"
           cache-dependency-path: mypersonalwebsite/package-lock.json
 
       - name: Install dependencies
         working-directory: mypersonalwebsite
         run: npm ci
+
+      - name: Audit dependencies
+        working-directory: mypersonalwebsite
+        run: npm audit --audit-level=moderate
 
       - name: Run tests
         working-directory: mypersonalwebsite
@@ -33,6 +38,14 @@ jobs:
       - name: Build
         working-directory: mypersonalwebsite
         run: npm run build
+
+      - name: Install Playwright browser
+        working-directory: mypersonalwebsite
+        run: npx playwright install --with-deps chromium
+
+      - name: Run smoke tests
+        working-directory: mypersonalwebsite
+        run: npm run test:smoke
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
