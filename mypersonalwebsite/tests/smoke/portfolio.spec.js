@@ -6,7 +6,7 @@ test.describe('portfolio production smoke', () => {
 
     await expect(page).toHaveTitle(/Seung Hun Jang/);
     await expect(page.getByRole('heading', { name: 'Seung Hun Jang' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Driving agentic AI development/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Driving agentic AI adoption/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Featured Projects' })).toBeVisible();
     await expect(page.getByRole('button', { name: /Case Study/ }).first()).toBeVisible();
   });

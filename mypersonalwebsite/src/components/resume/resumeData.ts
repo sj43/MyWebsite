@@ -7,18 +7,18 @@ const resumeData = {
   "bio": "Software Engineer II at Microsoft driving agentic AI adoption for Windows release engineering through MCP tools, secure agent access, Azure AI Search, and Copilot-powered workflows.",
   "featuredInitiative": {
     "eyebrow": "Current focus at Microsoft",
-    "title": "Driving agentic AI development for Windows release engineering",
-    "summary": "I am building the agentic development environment for my team: MCP tools that expose release workflows to AI agents, secure Azure AD/RBAC access, Azure AI Search grounding over engineering knowledge, and Copilot patterns that help teammates investigate systems, automate repeat work, and ship with guardrails.",
+    "title": "Driving agentic AI adoption across Windows release engineering",
+    "summary": "My current focus is turning AI from one-off experimentation into a trusted engineering practice for my team: reusable agent workflows, shared guardrails, grounded system context, and onboarding patterns that help teammates use AI agents safely in real release engineering work.",
     "highlights": [
-      "Built an MCP server exposing 50+ release engineering tools to AI agents",
-      "Set up repeatable agentic development workflows and Copilot-assisted onboarding paths for teammates",
-      "Designed secure AI access with Azure AD/MISE, role-based authorization, and human-in-the-loop controls",
-      "Created Azure AI Search indexing so agents answer from real code, docs, and release context"
+      "Defined the team workflow for where agents can inspect, suggest, and assist in release engineering tasks",
+      "Moved Copilot and agent usage from individual experiments into repeatable teammate workflows",
+      "Established safety expectations around permissions, grounded context, and human review",
+      "Focused adoption on release investigation, onboarding, configuration changes, and developer productivity"
     ],
     "metrics": [
-      { "value": "50+", "label": "MCP tools" },
-      { "value": "40+", "label": "release services" },
-      { "value": "AI-first", "label": "team workflow" }
+      { "value": "AI-first", "label": "team practice" },
+      { "value": "Guardrails", "label": "safe adoption" },
+      { "value": "Grounded", "label": "agent context" }
     ]
   },
   "address": "Kirkland, WA",
@@ -34,15 +34,15 @@ const resumeData = {
     {
       "organization": "Microsoft",
       "location": "Remote",
-      "position": "Software Engineer II — Agentic AI & Release Engineering Enablement",
+      "position": "Software Engineer II — AI Agent Platform & Developer Workflows",
       "date": "Sep 2023 - Present",
       "caseStudySlug": "microsoft",
       "description": [
-        "Driving the team's agentic AI initiative by turning release engineering workflows into secure, discoverable tools for AI agents and teammates",
-        "Built an MCP (Model Context Protocol) server enabling AI agents to interact with release automation through 50+ discoverable tools",
-        "Designed authentication (Azure AD/MISE), role-based authorization, and guardrails for secure AI agent access",
-        "Created an Azure AI Search indexing pipeline so Copilot and agents answer questions grounded in real code, docs, and release context",
-        "Set up Copilot-powered development and onboarding workflows that help teammates investigate systems and generate configuration changes faster",
+        "Implemented an MCP (Model Context Protocol) server that exposes 50+ release automation tools for agent-assisted investigation and workflow execution",
+        "Built the Azure AD/MISE authentication and RBAC authorization layer that scopes which agent tools and release data different users can access",
+        "Created an Azure AI Search indexing pipeline over code and engineering docs so Copilot and internal agents can retrieve grounded system context",
+        "Integrated Copilot-assisted scaffolding into onboarding and configuration workflows for teams joining the release platform",
+        "Documented usage patterns and guardrails so teammates can adopt agentic workflows without bypassing production review boundaries",
         "[C# | .NET | Azure AD | Azure AI Search | MCP | GitHub Copilot]"
       ]
     },
